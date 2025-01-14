@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test0113</title>
+    <style>
+        * { margin: 0; padding: 0;}
+        #title {
+            color: blue;
+        }
+        .subtitle {
+            color: red;
+        }
+        button {
+            background-color: green;
+            padding: 10px;
+        }
+
+        form {
+            width: 500px;
+            border: 1px solid #000000;
+            padding: 20px;
+            margin: 15px;
+        }
+        h1 { 
+            margin-bottom: 5px;
+        }
+        h2 {
+            font-size: 16px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #000000;
+        }
+        li.ndot {
+            list-style: none;
+        }
+        label {
+            margin-right: 5px;
+        }
+        p {
+            margin: 10px 0;
+        }
+        li {
+            list-style: circle;
+        }
+        li.indent {
+            margin-left: 60px;
+        }
+    </style>
+</head>
+<body>
+    <form action="test.jsp">
+        <h1 id="title">프런트엔드 개발자 지원서</h1>
+        <h2 class="subtitle">HTML, CSS, 자바스크립트의 기술을 이해하고 실무 경험이 있는 분을 찾습니다.</h2>
+        
+        <p><b>개인 정보</b></p>
+        <ul>
+            <li class="ndot"  style="margin-bottom: 5px;">
+                <pre>       <label for="user-name">이름</label><input id="user-name" type="text" placeholder="공백 없이 입력하세요."></pre>
+            </li>
+            <li class="ndot">
+                <pre>       <label for="user-phone">연락처</label><input id="user-phone" type="tel"></pre>
+            </li>
+        </ul>
+        
+        <p><b>지원 분야</b></p>
+        <ul>
+            <li class="indent">웹 퍼블리싱</li>
+            <li class="indent">웹 어플리케이션 개발</li>
+            <li class="indent">개발 환경 개선</li>
+        </ul>
+        
+        <p><b>지원 동기</b></p>
+        <textarea name="" id="" cols="60" rows="5" placeholder="본사 지원 동기를 간략히 써 주세요."></textarea>
+        <br>
+        <button type="submit" >접수하기</button>
+        <button type="reset" >다시 쓰기</button>
+    </form>
+</body>
+</html>
