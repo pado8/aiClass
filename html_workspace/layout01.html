@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>시맨틱태그를 이용한 레이아웃</title>
+  <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    header {
+        height: 200px;
+        background: #000000;
+        color: #ffffff;
+    }
+    nav {
+        height: 50px;
+        background: gray;
+        line-height: 50px;
+    }
+    article {
+        width: 60%;
+        height: 500px;
+        background: #bbbbbb;
+        float: left;
+        position: relative;
+    }
+    article > section {
+        position: relative;
+        width: 400px;
+        height: 400px;
+        margin: 40px auto;
+    }
+    aside {
+        width: 20%;
+        height: 500px;
+        background: #cccccc;
+    }
+    footer {
+        height: 100px;
+        background: darkgray;
+        clear: left;
+    }
+
+    nav > a.on {
+        background: RGB(4,170,109);
+        color: #ffffff;
+    }
+
+    a {
+        text-decoration: none;
+        color: #ffffff;
+        padding: 14px 16px;
+    }
+
+    a:hover {
+        background-color: #dddddd;
+        color: #000000;
+    }
+
+    
+    #div1 {
+        float: left;
+        width: 200px;
+        height: 200px;
+        background: url(images/sunset.jpg);
+        background-size: contain;
+    }
+    #div2 {
+        float: left;
+        width: 200px;
+        height: 200px;
+        background: url(images/field.jpg);
+        background-size: cover;
+    }
+    #div3 {
+        position: absolute;
+        left: 50%;
+        top: 200px;
+        width: 100px;
+        height: 100px;
+        background: green;
+        margin-left: -100px;
+    }
+    #div4 {
+        position: absolute;
+        left: 50%;
+        top: 200px;
+        width: 100px;
+        height: 100px;
+        background: blue;
+        margin-left: 0px;
+    }
+
+    .leftnav {
+        float: left;
+    }
+    .rightad {
+        float: right;
+    }
+
+  </style>
+</head>
+<body>
+  <!-- 머리말 ---------------------------------------------->
+  <header>
+    <h1>글로벌아이티</h1>    
+  </header>
+  <!-- /머리말 -->
+
+  <!-- 네비게이션 ------------------------------------------>
+  <nav>
+    <!-- 화사 소개 | 회사 연혁 | 과정 소개 -->
+    <a class="on" href="#">회사 소개</a><a href="#">회사 연혁</a><a href="#">과정 소개</a>
+  </nav>
+  <!-- /네비게이션 -->
+  <aside class="leftnav">
+    로컬 네이게이션
+  </aside>
+  <article>
+    <section>
+      <div id="div1"></div>
+      <div id="div2"></div>
+      <div id="div3"></div>
+      <div id="div4"></div>
+    </section>
+  </article>
+  <aside class="rightad">
+    오른쪽 사이드 광고
+  </aside>
+
+  <!-- 꼬리말 -->
+  <footer>
+    &copy; All rights reserved by 글로벌아이티
+  </footer>
+  
+</body>
+</html>
