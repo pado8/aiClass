@@ -1,17 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Flex Box Layout</title>
-  <style>    
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     /* 이미지 스타일링 */
     .pic img {
-      width: 100%; /* 이미지가 .pic 에 가득차도록 */
-      height: auto; /* 이미지의 비율을 유지 */
-    } 
+      width: 100%;
+      /* 이미지가 .pic 에 가득차도록 */
+      height: auto;
+      /* 이미지의 비율을 유지 */
+    }
+
+    .container {
+      width: 100%;
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .pic {
+      width: 100%;
+    }
+
+    @media screen and (max-width:1024px) {
+      .container {
+        flex-flow: row wrap;
+      }
+
+      .container .pic {
+        width: 340px;
+      }
+    }
+
+    @media screen and (max-width:768px) {
+      .container {
+        flex-flow: row wrap;
+      }
+
+      .container .pic {
+        width: 100%;
+      }
+    }
   </style>
 </head>
+
 <body>
   <div class="container">
     <div class="pic">
@@ -25,4 +67,5 @@
     </div>
   </div>
 </body>
+
 </html>
