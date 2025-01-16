@@ -32,7 +32,18 @@
     }
 
     /* Do it! align-content 값을 다양하게 적용하는 #opt1 ~ #opt7 스타일 만들기 */                          
-
+    #opt1::before {content: 'flex-start'; position: absolute; top: -25px; left: 0; width: 100%; text-align: center;}
+    #opt2::before {content: 'flex-end'; position: absolute; top: -25px; left: 0; width: 100%; text-align: center;}
+    #opt3::before {content: 'center'; position: absolute; top: -25px; left: 0; width: 100%; text-align: center;}
+    #opt4::before {content: 'space-between'; position: absolute; top: -25px; left: 0; width: 100%; text-align: center;}
+    #opt5::before {content: 'space-around'; position: absolute; top: -25px; left: 0; width: 100%; text-align: center;}
+    #opt6::before {content: 'stretch'; position: absolute; top: -25px; left: 0; width: 100%; text-align: center;}
+    #opt1 {position: relative; align-content: flex-start;}
+    #opt2 {position: relative; align-content: flex-end;}
+    #opt3 {position: relative; align-content: center;}
+    #opt4 {position: relative; align-content: space-between;}
+    #opt5 {position: relative; align-content: space-around;}
+    #opt6 {position: relative; align-content: stretch;}
   </style>
 </head>
 <body>
