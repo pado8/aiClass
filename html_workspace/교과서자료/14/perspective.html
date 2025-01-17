@@ -20,7 +20,29 @@
       }
 
 			/* Do it! 두번째 이미지에 원근감 추가하기  - 부모 요소에 적용할 것  */
-
+			.origin:nth-child(1):before {
+			content: '';
+			position: relative;
+			top: 214px;
+			left: 0;
+			display: block;
+			width: 100%;
+			height: 0;
+			text-align: center;
+			white-space: nowrap;
+		}
+		.origin:nth-child(2):before {
+			content: 'perspective: 300px;';
+			position: relative;
+			top: 214px;
+			left: 0;
+			display: block;
+			width: 100%;
+			height: 0;
+			text-align: center;
+			white-space: nowrap;
+		}
+		#pers{perspective: 300px;}
 		</style>
 	</head>
 	<body>		

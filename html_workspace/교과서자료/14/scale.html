@@ -22,7 +22,45 @@
 			}
 
       /* Do it! scale 함수로 확대,축소하기 */
-
+	  .origin:nth-child(1):before {
+			content: 'scaleX(2)';
+			position: relative;
+			top: 214px;
+			left: 30px;
+			width: 100%;
+			text-align: center;
+			display: block;
+			width: 0;
+			height: 0;
+			white-space: nowrap;
+		}
+		.origin:nth-child(2):before {
+			content: 'scaleY(1.5)';
+			position: relative;
+			top: 214px;
+			left: 30px;
+			width: 100%;
+			text-align: center;
+			display: block;
+			width: 0;
+			height: 0;
+			white-space: nowrap;
+		}
+		.origin:nth-child(3):before {
+			content: 'scale(0)';
+			position: relative;
+			top: 214px;
+			left: 30px;
+			width: 100%;
+			text-align: center;
+			display: block;
+			width: 0;
+			height: 0;
+			white-space: nowrap;
+		}
+	  	#scalex {transform: scaleX(2);}
+		#scaley {transform: scaleY(1.5);}
+		#scale {transform: scale(0);}
 		</style>
 	</head>
 	<body>

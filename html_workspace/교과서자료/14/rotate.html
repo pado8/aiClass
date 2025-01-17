@@ -16,7 +16,32 @@
 		}
 
 		/* Do it! rotate 함수로 회전하기 */
-
+		.origin:nth-child(1):before {
+			content: 'rotate(10deg)';
+			position: relative;
+			top: 214px;
+			left: 40px;
+			width: 100%;
+			text-align: center;
+			display: block;
+			width: 0;
+			height: 0;
+			white-space: nowrap;
+		}
+		.origin:nth-child(2):before {
+			content: 'rotate(-10deg)';
+			position: relative;
+			top: 214px;
+			left: 40px;
+			width: 100%;
+			text-align: center;
+			display: block;
+			width: 0;
+			height: 0;
+			white-space: nowrap;
+		}
+		#rotate1:hover{transform: rotate(10deg);}
+		#rotate2:hover{transform: rotate(-10deg);}
   </style>
 </head>
 <body>		

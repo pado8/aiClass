@@ -9,11 +9,28 @@
       height: 100px;
       background-color: #fa0;
       /* Do it! 2초 동안 애니메이션 실행하기 */
-
+      animation: slideRight 2s;
     }
+    .box:nth-child(1):before {
+				content: 'animation: @keyframes slideRight 2s';
+				position: relative;
+				top: 214px;
+				left: 0;
+				display: block;
+				width: 100%;
+				height: 0;
+				text-align: center;
+				white-space: nowrap;
+			}
 
     /* Do it! @keyframes로 애니메이션 정의하기 */
-
+    @keyframes slideRight {
+      0% {transform: translateX(0px);}
+      25% {transform: translateX(100px);}
+      50% {transform: translateY(250px);}
+      72% {transform: translateX(500px);}
+      100% {transform: translate(500px, 500px);}
+    }
   </style>
 </head>
 

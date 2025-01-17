@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>transition 연습</title>
+    <style>
+        #parent {
+            width: 500px;
+            height: 500px;
+            background: green;
+            position: relative;
+        }
+        #child {
+            width: 200px;
+            height: 200px;
+            background: blue;
+            opacity: 0;
+            /* display: none; */
+            /* visibility: hidden; */
+            transition: 1.5s;
+            position: absolute;
+            left: -200px;
+        }
+        #parent:hover #child{
+            transform: translateX(500px);
+            opacity: 1;
+            /* display: block; */
+            /* visibility: visible; */
+        }
+
+    </style>
+</head>
+<body>
+    <div id="parent">
+        <div id="child">
+
+        </div>
+    </div>
+</body>
+</html>

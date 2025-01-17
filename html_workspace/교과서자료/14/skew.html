@@ -22,7 +22,20 @@
 			}
 
 			/* Do it! skew 함수를 사용해 웹 요소 비틀기 */
- 
+			.origin:nth-child(1):before {
+				content: '';
+				position: relative;
+				top: 214px;
+				left: 0;
+				display: block;
+				width: 100%;
+				height: 0;
+				text-align: center;
+				white-space: nowrap;
+			}
+			#skewx {transform: skewX(45deg);}
+			#skewy {transform: skewy(45deg);}
+			#skewxy {transform: skew(45deg, 45deg);}
 		</style>
 	</head>
 	<body>		
