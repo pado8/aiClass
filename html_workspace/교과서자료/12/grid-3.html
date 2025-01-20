@@ -9,6 +9,10 @@
       .container {
         width:600px;
         border: 1px solid #ccc;
+        display: grid;
+        /* grid-template-columns: 1fr 2fr 1fr; */
+        grid-template-columns: repeat(3,1fr);
+        grid-template-rows: minmax(auto, 700px) minmax(20px, auto);
       }
       .items{
         padding:10px;
