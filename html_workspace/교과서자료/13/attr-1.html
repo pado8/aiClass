@@ -20,17 +20,26 @@
 		}
 
 		/* Do it! href 속성이 있는 a 요소의 스타일 지정하기 */
-
+		a[href] {color: violet;}
+		a[href='http://www.naver.com'] {color: green;}
+		a[class~=flower] {color: yellowgreen;}
+		a[class|=flower] {color: aquamarine;}
+		a[class^=good] {color: cadetblue;}
+		a[class$=good] {color: darkcyan;}
+		a[class*=color] {color: blueviolet;}
 </style>
 </head>
 
 <body>
 	<ul>
 		<li><a>메인 메뉴 : </a></li>
-		<li><a href="#">메뉴 1</a></li>
-		<li><a href="#">메뉴 2</a></li>
-		<li><a href="#">메뉴 3</a></li>
-		<li><a href="#">메뉴 4</a></li>
+		<li><a href="http://www.naver.com">메뉴 1</a></li>
+		<li><a href="#" class="flower show">메뉴 2</a></li>
+		<li><a href="#" class="flower-show">메뉴 3</a></li>
+		<li><a href="#" class="goodjob">메뉴 4</a></li>
+		<li><a href="#" class="jobgood">메뉴 5</a></li>
+		<li><a href="#" class="mycolor">메뉴 6</a></li>
+		<li><a href="#" class="colorful">메뉴 7</a></li>
 	</ul>
   </body>
  </html>

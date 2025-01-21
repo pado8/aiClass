@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자식 선택자 사용시 고려사항</title>
+    <style>
+        div>div>span {color: red;}
+        div>div>#title {color: blue;}
+
+        a {color: olive;text-decoration: none; display: inline-block; padding: 10px; background: blue;}
+        a:hover {color: black;}
+    </style>
+</head>
+<body>
+    <div>
+        <p>css3</p>
+        <div>
+            <span id="title">css3</span>
+        </div>
+    </div>
+    <span>css3</span>
+
+    <div id="box1">
+        <div>
+            <p>css3</p>
+        </div>
+    </div>
+    <p>css3</p>
+
+
+    <a href="http://www.naver.com" target="_blank">네이버</a>
+
+</body>
+</html>
