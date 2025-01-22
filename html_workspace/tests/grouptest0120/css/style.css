@@ -1,6 +1,13 @@
 @import url(http://fonts.googleapis.com/css?family=Play);
 @import url(http://fonts.googleapis.com/css?family=Monoton);
 
+@font-face {
+    font-family: "TESLA";
+    src: url('../fonts/TESLA.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+}
+
 /*    Reset CSS  */
 * { margin:0;  padding:0; }
 ol,ul { list-style: none; }
@@ -78,7 +85,7 @@ header {width: 700px; height: 100%; position: fixed; top: 0px; left: -420px;
 .txt {position:absolute;top: 54px;left: 5px;font-size: 22px;font-family:play;color:#bbb;letter-spacing: -1px;}
 .txt b {font:bold 34px arial;color: #fff;}
 .tit {position:absolute;top:0px;right:0px;font-size: 40px;color: #fff;font-family: 'Monoton', cursive;letter-spacing:-1px;}
-.tit em {font-size: 20px;font-family:play;color: RGB(188,190,192);margin-left: 5px;}
+.tit em {font-size: 20px;font-family:'TESLA';color: RGB(188,190,192);margin-left: 5px;}
 
 /* contents 레이아웃 */
 #side {width: 800px; height: 100%; position: fixed; bottom: 0; right: -800px; background: #111; opacity: 0.5; transform: skewX(-40deg); transition: 0.5s;}

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        .bg-1 {
+            background-color: #1abc9c;
+            color: #fff;
+        }
+
+        .bg-2 {
+            background-color: RGB(105, 193, 184);
+            color: #ffffff;
+        }
+
+        .bg-3 {
+            background-color: #ffffff;
+            color: #555555;
+        }
+
+        .bg-4 {
+            background-color: RGB(185,199,212);
+            color: #555555;
+        }
+
+        .container-fluid {
+            padding-top: 70px;
+            padding-bottom: 70px;
+        }
+
+        body .navbar {
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">AQUA</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid bg-1 text-center">
+        <h3>AQUA의 Portfolio</h3>
+        <img src="img/profile.jpg" class="img-circle" alt="profile">
+        <h3>발전하는 개발자 AQUA의 포트폴리오입니다.</h3>
+    </div>
+
+    <div id="about" class="container-fluid bg-2 text-center">
+        <h3>저를 소개합니다.</h3>
+        <p>프론트엔드에서 풀스택으로, 한 걸음 더 성장하는 프로그래머입니다.</p>
+        <a href="https://github.com/pado8" target="_blank" class="btn btn-default btn-lg">my github</a>
+    </div>
+
+    <div id="portfolio" class="container-fluid bg-3 text-center">
+        <h3 style="margin-bottom: 20px;">Portfolio</h3>
+        <div class="row">
+            <div class="col-sm-3">
+                <p>Toy Project - 테슬라 사이버트럭 홍보 페이지</p>
+                <a href="http://192.168.219.135:5501/html_workspace/tests/grouptest0120/grouptest0120.html" target="_blank"><img src="img/project1.jpg" class="img-responsive" style="width:100%" alt="Image"></a>
+            </div>
+            <div class="col-sm-3">
+                <p>Mini project1 - 부트캠프 적용 포트폴리오 페이지</p>
+                <img src="img/project2.jpg" class="img-responsive" style="width:100%" alt="Image">
+            </div>
+            <div class="col-sm-3">
+                <p>Mini project2 - 브랜드 클론 데모 페이지</p>
+                <img src="img/project3.jpg" class="img-responsive" style="width:100%" alt="Image">
+            </div>
+            <div class="col-sm-3">
+                <p>Final project 팀 파이널 프로젝트 React + Java 페이지</p>
+                <img src="img/project4.jpg" class="img-responsive" style="width:100%" alt="Image">
+            </div>
+        </div>
+    </div>
+
+    <div id="contact" class="container-fluid bg-4 text-center">
+        <h3>연락처</h3>
+        <p>카톡ID : pado8</p>
+        <p>이메일 : floe9235@gmail.com</p>
+    </div>
+
+
+</body>
+
+</html>
