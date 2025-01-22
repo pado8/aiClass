@@ -27,19 +27,12 @@ h1 img {width: 280px;}
 
 
 /* 헤더 */
-header {width: 700px; height: 100%; position: fixed; top: 0px; left: -420px; 
+header {
+    width: 700px; height: 100%;
+    position: fixed; top: 0px; left: -420px; 
     background: linear-gradient(-45deg, #7D7D7D, #4F4F4F, #373737);
-
-    /* 
-    #B0B0B0, #3A3A3A, #2C2C2C
-    #4A4A4A, #2F2F2F, #1E1E1E
-    #6D6D6D, #2C2C2C, #000000
-    #7D7D7D, #4F4F4F, #373737
-    #D0D0D0, #707070, #2C2C2C
-    #5C5C5C, #3B3B3B, #1A1A1A
-    */
-
-     transform: skewX(-40deg);}
+    transform: skewX(-40deg);
+}
 /* 1depth */
 #gnb {width: 220px; position: absolute; top: 150px; right: 0px;}
 #gnb>li {position: relative;}
@@ -153,6 +146,9 @@ header {width: 700px; height: 100%; position: fixed; top: 0px; left: -420px;
         right: -720px;
         transform: skewX(-40deg) scale(0.8);
     }
+    .vid {
+        left: -300px;
+    }
 }
 @media screen and (max-width:768px){
     header {
@@ -175,5 +171,8 @@ header {width: 700px; height: 100%; position: fixed; top: 0px; left: -420px;
         position: relative;
         top: -30px;
         left: -70px;
+    }
+    .vid {
+        left: -450px;
     }
 }
