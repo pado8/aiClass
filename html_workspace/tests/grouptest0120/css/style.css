@@ -88,26 +88,21 @@ header {
 
 /* contents내 썸네일 */
 #side .con p {width: 300px;height: 100px;position: absolute;left: 25px;}
-#side .con p a {position: relative;display: block;width: 550px;height: 140px;}
+#side .con p a {position: relative;display: block;width: 320px;height: 140px;}
 #side .con p em {display: inline-block;font: bold 16px/1.7 arial;color: #C0C0C0;transform: skewX(40deg);position: relative;top: 17px;}
-#side .con p img {width:300px;height: 150px;opacity: 0.7;transition:all 0.5s;transform: skewX(40deg);}
-#side .con p img:hover { opacity:1;}
+#side .con p img {width:300px;height: 150px;opacity: 1;transition:all 0.5s;transform: skewX(40deg); pointer-events: none;}
 #side .con p:nth-child(1) {bottom: 360px;transform: translateX(200px);transition:all  0.4s;}
 #side .con p:nth-child(2) {bottom: 215px;transform: translateX(200px);transition:all  0.8s;}
 #side .con p:nth-child(3) {bottom: 70px;transform: translateX(200px);transition:all  1.2s;}
 #side:hover .con p { transform:translateX(0px);}
-#side .con a:hover {
-    animation: drive linear 0.8s infinite;
+#side .con a:hover img{
+    animation: drive linear 0.8s infinite; opacity: 0.7;
 }
-#side .con img::before {
-    content: "";
-}
-
-
 #side:hover ~ .txtBox {
     top: 280px;
     right: 120px;
-  }
+}
+
 /* 자동롤링 버튼 */
 #side .btnContents { width:150px; height:50px; position:absolute;  bottom:20px; left:200px; color:#fff; transform:skewX(40deg); }
 #side:hover .btnContents { left:700px;}	
@@ -150,6 +145,7 @@ header {
         left: -300px;
     }
 }
+
 @media screen and (max-width:768px){
     header {
         display: none;
