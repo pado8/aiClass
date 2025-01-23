@@ -102,18 +102,52 @@ header {
     top: 280px;
     right: 120px;
 }
+#side:hover ~ .touch-cont {
+    opacity: 0;
+}
 
-/* 자동롤링 버튼 */
-#side .btnContents { width:150px; height:50px; position:absolute;  bottom:20px; left:200px; color:#fff; transform:skewX(40deg); }
-#side:hover .btnContents { left:700px;}	
-.btnContents i {font-size: 50px;position:absolute;bottom:0px;right:0px;opacity:1;}
-.btnContents i:nth-child(1) { animation:ani linear 1.5s 0s infinite;}
-.btnContents i:nth-child(2) { right: 50px; animation:ani linear 1.5s 0.5s infinite;}
-.btnContents i:nth-child(3) { right: 100px; animation:ani linear 1.5s 1.0s infinite;}
 
-@keyframes ani {
-	0% { right:0px; transform:sclae(1); opacity:1;}
-	100% {right: 150px;transform:scale(1.5);opacity:0;}
+.touch-cont {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    text-align: center;
+    color: #fff;
+    pointer-events: none;
+    transition: 0.5s;
+}
+
+.touch-me {
+    position: relative;
+    display: inline-block;
+    font-size: 28px;
+    text-transform: uppercase;
+    cursor: pointer;
+    animation: glow 1.5s infinite;
+}
+
+.touch-me span {
+    position: relative;
+    display: inline-block;
+    margin: 0 5px;
+}
+
+.touch-me span::after {
+    content: '\f0e7'; /* FontAwesome lightning bolt */
+    font-family: 'FontAwesome';
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.5rem;
+    color: #fff;
+    opacity: 0;
+    animation: particle-move 1.5s infinite;
+    animation-delay: calc(var(--index) * 0.2s);
+}
+
+.touch-cont .touch-me span:nth-child(6)::after {
+    content: '';
 }
 
 @keyframes drive {
@@ -124,6 +158,31 @@ header {
       transform: translateX(-20vw) scale(1.1) skewX(-45deg);
     }
   }
+
+
+@keyframes glow {
+    0%, 100% {
+        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff;
+    }
+    50% {
+        text-shadow: 0 0 5px #fff, 0 0 15px #fff, 0 0 25px #fff;
+    }
+}
+
+@keyframes particle-move {
+    0% {
+        transform: translate(-50%, 0) scale(1);
+        opacity: 0.6;
+    }
+    50% {
+        transform: translate(-50%, -30px) scale(1.5);
+        opacity: 0.3;
+    }
+    100% {
+        transform: translate(-50%, -60px) scale(2);
+        opacity: 0;
+    }
+}
 
 
 @media screen and (max-width:1024px){
