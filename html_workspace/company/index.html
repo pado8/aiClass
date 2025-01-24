@@ -5,13 +5,68 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>글로벌아이티</title>
+    <link rel="icon" href="img/favicon-f-150x150.png" sizes="32x32">
+    <link rel="icon" href="img/favicon-f-200x200.png" sizes="192x192">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b8624640e18914b88eb8769061745751"></script>
     <link rel="stylesheet" href="css/style.css">
+
+    <script>
+        $(document).ready(function () {
+            // Add smooth scrolling to all links in navbar + footer link
+            $(".navbar a, footer a[href='#mypage']").on('click', function (event) {
+
+                // Make sure this.hash has a value before overriding default behavior
+                if (this.hash !== "") {
+
+                    // Prevent default anchor click behavior
+                    event.preventDefault();
+
+                    // Store hash
+                    var hash = this.hash;
+
+                    // Using jQuery's animate() method to add smooth page scroll
+                    // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
+                    $('html, body').animate({
+                        scrollTop: $(hash).offset().top
+                    }, 900, function () {
+
+                        // Add hash (#) to URL when done scrolling (default click behavior)
+                        window.location.hash = hash;
+                    });
+                } // End if
+            });
+        })
+    </script>
 </head>
 
-<body>
+<body id="mypage">
+    <!-- navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#mypage">글로벌IT</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#about" data-toggle="collapse" data-target=".navbar-collapse.in">About</a></li>
+                    <li><a href="#contact" data-toggle="collapse" data-target=".navbar-collapse.in">Contact</a></li>
+                    <li><a href="#ourmap" data-toggle="collapse" data-target=".navbar-collapse.in">Map</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- . navigation -->
+
     <!-- carousel -->
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
         <!-- Indicators -->
@@ -26,7 +81,7 @@
         <div class="carousel-inner" role="listbox">
             <div class="item active">
                 <img src="img/carousel01.jpg" alt="carousel01">
-                <div class="carousel-caption">
+                <div class="carousel-caption animate__animated animate__slideInLeft">
                     <h3>고용노동부지정 글로벌아이티인재개발원 5년인증 우수훈련기관!</h3>
                     <p>
                         고용노동부 실시 교육훈련기관 인증 평가에서
@@ -37,7 +92,7 @@
 
             <div class="item">
                 <img src="img/carousel02.jpg" alt="carousel02">
-                <div class="carousel-caption">
+                <div class="carousel-caption animate__animated animate__slideInLeft">
                     <h3>K-Digital Training</h3>
                     <p>
                         풀스택 프레임워크(자바,스프링)기반 데이터 융합SW개발자 과정
@@ -47,7 +102,7 @@
 
             <div class="item">
                 <img src="img/carousel03.jpg" alt="carousel03">
-                <div class="carousel-caption">
+                <div class="carousel-caption animate__animated animate__slideInLeft">
                     <h3>ChatGPT를 활용한 AI 웹앱(자바,파이썬)서비스 개발자 양성 과정</h3>
                     <p>
                         K-Digital Training은 기업이 현장에서 필요로 하는 인력을 양성합니다
@@ -57,7 +112,7 @@
 
             <div class="item">
                 <img src="img/carousel04.jpg" alt="carousel04">
-                <div class="carousel-caption">
+                <div class="carousel-caption animate__animated animate__slideInLeft">
                     <h3>K-Digital Training</h3>
                     <p>
                         ChatGPT를 활용한 AI 웹앱(자바,파이썬)서비스 개발자 양성
@@ -79,36 +134,114 @@
     <!-- / carousel -->
 
     <!-- 글로벌 IT 소개 -->
-    <div class="container text-center">
-        <h3>글로벌 IT</h3>
-        <p>We love music!</p>
-        <p>We have created a fictional band website. Lorem ipsum..</p>
+    <div id="about" class="container text-center">
+        <h3 class="ani1">글로벌 IT</h3>
+        <p style="font-size: 35px;">글로벌 IT 인재개발원은 4차 산업혁명의 중심에 있습니다</p>
+        <p style="font-size: 20px;">정보통신기술(ICT)의 융합으로 이뤄지며 인공지능, 로봇기술, 생명과학이 주도하는 차세대 산업혁명의 중심에서 대한민국을 넘어 세계 무대로 진출할 글로벌
+            인재 양성을 목표를 삼아 나아가고 있습니다.</p>
 
     </div>
     <!-- / 글로벌 IT 소개 -->
 
     <!-- 온라인 상담 카카오톡 상담 수강신청 강사소개 -->
-    <div class="row">
-        <div class="col-sm-3">
-            <p><strong>온라인 상담</strong></p><br>
-            <img src="img/pic01.jpg" class="img-border" alt="pic01">
-        </div>
-        <div class="col-sm-3">
-            <p><strong>카카오톡 상담</strong></p><br>
-            <img src="img/pic02.jpg" class="img-border" alt="pic02">
-        </div>
-        <div class="col-sm-3">
-            <p><strong>수강신청</strong></p><br>
-            <img src="img/pic03.jpg" class="img-border" alt="pic03">
-        </div>
-        <div class="col-sm-3">
-            <p><strong>강사소개</strong></p><br>
-            <img src="img/pic04.jpg" class="img-border" alt="pic04">
+    <div class="container text-center">
+        <div class="row">
+            <div class="col-sm-3">
+                <p><strong>온라인 상담</strong></p><br>
+                <img src="img/pic01.jpg" class="img-border" alt="pic01">
+                <div><span class="glyphicon glyphicon-circle-arrow-right"></span></div>
+            </div>
+            <div class="col-sm-3">
+                <p><strong>카카오톡 상담</strong></p><br>
+                <img src="img/pic02.jpg" class="img-border" alt="pic02">
+                <div><span class="glyphicon glyphicon-circle-arrow-right"></span></div>
+            </div>
+            <div class="col-sm-3">
+                <p><strong>수강신청</strong></p><br>
+                <img src="img/pic03.jpg" class="img-border" alt="pic03">
+                <div><span class="glyphicon glyphicon-circle-arrow-right"></span></div>
+            </div>
+            <div class="col-sm-3">
+                <p><strong>강사소개</strong></p><br>
+                <img src="img/pic04.jpg" class="img-border" alt="pic04">
+                <div><span class="glyphicon glyphicon-circle-arrow-right"></span></div>
+            </div>
         </div>
     </div>
     <!-- /  온라인 상담 카카오톡 상담 수강신청 강사소개 -->
 
+    <!-- contact -->
+    <div id="contact" class="container-fluid" style="background: #ddd;">
+        <div class="container">
+            <h3 class="text-center">Contact</h3>
+            <p class="text-center"><em>궁금한 점이 있으시면 연락주세요!</em></p>
+            <div class="row">
+                <div class="col-md-4">
+                    <p><span class="glyphicon glyphicon-map-marker"></span>주소: 서울시 관악구 남부순환로 1820, 에그엘로우 6F, 7F, 14F</p>
+                    <p><span class="glyphicon glyphicon-phone"></span>전화: 02-60200055</p>
+                    <p><span class="glyphicon glyphicon-print"></span>팩스: 02-3285-0012</p>
+                </div>
+                <div class="col-md-8">
+                    <div class="row">
+                        <div class="col-md-6 form-group">
+                            <input class="form-control" id="name" name="name" placeholder="name" type="text"
+                                required></input>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <input class="form-control" id="email" name="email" placeholder="email" type="email"
+                                required></input>
+                        </div>
+                    </div>
+                    <textarea id="comments" class="form-control form-group" name="comments" placeholder="comments"
+                        rows="5"></textarea>
+                    <div class="row">
+                        <div class="col-md-12 form-group">
+                            <button class="btn btn-info pull-right">보내기</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- / contact -->
 
+    <!-- 오시는길 -->
+    <div id="ourmap" class="container-fluid text-center">
+        <h3>오시는 길</h3>
+        <div id="map" style="width:100%;height:500px;"></div>
+    </div>
+    <!-- / 오시는길 -->
+
+    <footer class="text-center">
+        <a class="up-arrow" href="#mypage" data-toggle="tooltip" title="TO TOP">
+            <span class="glyphicon glyphicon-chevron-up"></span>
+        </a>
+        <p>&copy; All rights reserved by 글로벌IT</p>
+    </footer>
+
+
+    <script>
+        var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+            mapOption = {
+                center: new kakao.maps.LatLng(37.4809094, 126.9520957), // 지도의 중심좌표
+                level: 3 // 지도의 확대 레벨
+            };
+        var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+        // 마커가 표시될 위치입니다 
+        var markerPosition = new kakao.maps.LatLng(37.4809094, 126.9520957);
+
+        // 마커를 생성합니다
+        var marker = new kakao.maps.Marker({
+            position: markerPosition
+        });
+
+        // 마커가 지도 위에 표시되도록 설정합니다
+        marker.setMap(map);
+
+        // 아래 코드는 지도 위의 마커를 제거하는 코드입니다
+        // marker.setMap(null);    
+    </script>
 </body>
 
 </html>
