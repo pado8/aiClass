@@ -77,7 +77,13 @@ body {
 
 .carousel-caption {
     top: 20px;
+    /* animation: ani 1s; */
 }
+/* 
+@keyframes ani {
+    0% {transform: translateX(-100%);}
+    100% {transform: translateX(0);}
+} */
 
 footer {
     background-color: #2d2d30;
@@ -93,6 +99,7 @@ footer a:hover {
     color: #777;
     text-decoration: none;
 }
+
 
 @media screen and (max-width: 767px) {
     .carousel-caption p {
