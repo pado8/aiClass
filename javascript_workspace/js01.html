@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript</title>
+    <script>
+        let now = new Date(); // now는 변수이다. 레퍼런스 변수이다.
+        document.write(`현재 시각은 ${now.toLocaleString()}`);
+        document.write('<h1>JavaScript</h1>');
+
+        now = 100; //now의 값을 100으로 변경
+        document.write(now);
+        
+        document.write("<br>");
+        const b = 10; // b는 상수.
+        document.write(b);
+        // b= 20; // 상수의 값을 변경할 수 없음.
+        // document.write(b);
+        document.write("<br>");
+
+        let c = new Array(4);
+        c[0]=100;
+        c[1]=200;
+        c[2]=300;
+        c[3]=400;
+        document.write(c[0]+"<br>");
+        document.write(c[1]+"<br>");
+        document.write(c[2]+"<br>");
+        document.write(c[3]+"<br>");
+        
+        let d = [1000, 2000, 3000, 4000];
+        document.write(d[0]+"<br>");
+        document.write(d[1]+"<br>");
+        document.write(d[2]+"<br>");
+        document.write(d[3]+"<br>");
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

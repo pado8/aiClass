@@ -34,6 +34,9 @@ nav.navbar {
 nav.navbar.topOn {
     background: rgba(0, 0, 0, 0) !important;
 }
+nav.navbar:not(.topOn) {
+    background: rgba(255, 255, 255, 1) !important;
+}
 
 nav.navbar.topOn a {
     color: #fff !important;
@@ -213,7 +216,8 @@ nav.navbar:not(.topOn) .on {
 }
 
 #slider {
-    width: 90%;
+    padding: 0 !important;
+    width: 100%;
 }
 
 #slider h1 {
@@ -226,10 +230,10 @@ nav.navbar:not(.topOn) .on {
 }
 
 
-.slick-prev:before,
-.slick-next:before {
-    color: #333333;
+.slick-arrow {
+    display: none !important;
 }
+
 
 footer .col-sm-2,
 footer .col-sm-6 {
