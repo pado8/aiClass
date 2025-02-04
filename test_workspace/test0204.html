@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test0204</title>
+    <script>
+        document.write('1. 현재 날짜를 구해서 2025-02-04 형식으로 출력하세요.<br/>');
+        let testdate = new Date();
+        let month = testdate.getMonth();
+        if (month < 10) {month = '0' + testdate.getMonth()}
+        let date = testdate.getDate();
+        if (date < 10) {date = '0' + testdate.getDate()}
+        document.write(testdate.getFullYear() + '-' + month + '-' + date);
+        document.write('<br/>');
+        document.write('2. 1~20까지의 난수를 구하세요.<br/>');
+        let ran = Math.floor((Math.random()*20)+1);
+        document.write(ran)
+        document.write('<br/>');
+        document.write('3. 버튼을 만들어서 클릭하면 구글 사이트로 이동하게 하세요.<br/>');
+        document.write(`<button onclick="javascript:location.href='http://www.google.co.kr'">구글</button>`);
+        document.write('<br/>');
+        document.write('4. 1~5 숫자 5개를 배열에 넣고 출력하세요.<br/>');
+        let arr = [1,2,3,4,5];
+        for (let i = 0; i < arr.length; i++) {document.write(arr[i]);}
+        document.write('<br/>');
+        document.write('5. 6~10을 4번 배열에 넣고 출력하세요.<br/>');
+        let newArr = arr.splice(4, 0, '6','7','8','9','10');
+        for (let i = 0; i < arr.length; i++) {document.write(arr[i]);}
+        document.write('<br/>');
+        document.write('6. 이름, 학과, 학년을 배열에 넣고 CSV를 만들어 보세요.<br/>');
+        let student = ['노태효', '컴퓨터공학과','4'];
+        document.write(student.join());
+        document.write('<br/>');
+        document.write('7. instance가 무엇인지 설명하세요.<br/>');
+        document.write('class를 통해서 만들어진 object를 instance라고 함. 클래스를 기반으로 만들어진 개별적인 객체')
+    </script>
+</head>
+
+<body>
+
+
+
+
+
+
+
+</body>
+
+</html>

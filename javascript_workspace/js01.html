@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +12,7 @@
 
         now = 100; //now의 값을 100으로 변경
         document.write(now);
-        
+
         document.write("<br>");
         const b = 10; // b는 상수.
         document.write(b);
@@ -19,24 +20,106 @@
         // document.write(b);
         document.write("<br>");
 
+        document.write("<hr>");
+
         let c = new Array(4);
-        c[0]=100;
-        c[1]=200;
-        c[2]=300;
-        c[3]=400;
-        document.write(c[0]+"<br>");
-        document.write(c[1]+"<br>");
-        document.write(c[2]+"<br>");
-        document.write(c[3]+"<br>");
-        
+        c[0] = 100;
+        c[1] = 200;
+        c[2] = 300;
+        c[3] = 400;
+        document.write(c[0] + "<br>");
+        document.write(c[1] + "<br>");
+        document.write(c[2] + "<br>");
+        document.write(c[3] + "<br>");
+
         let d = [1000, 2000, 3000, 4000];
-        document.write(d[0]+"<br>");
-        document.write(d[1]+"<br>");
-        document.write(d[2]+"<br>");
-        document.write(d[3]+"<br>");
+        document.write(d[0] + "<br>");
+        document.write(d[1] + "<br>");
+        document.write(d[2] + "<br>");
+        document.write(d[3] + "<br>");
+
+        let name = '홍길동';
+        let address = '서울';
+        document.write('이름 : ' + name + ', 주소 : ' + address);
+        document.write("<br>");
+
+        let age;
+        document.write(age);
+        document.write("<br>");
+        age = 10;
+        document.write(age);
+        document.write("<br>");
+        age = '십대';
+        document.write(age);
+        document.write("<br>");
+
+        document.write("<hr>");
+
+        let nums = [1, 2, 3];
+        let chars = ['a', 'b', 'c', 'd'];
+
+        let numsChars = nums.concat(chars);
+        let charsNums = chars.concat(nums);
+        document.write(`nums에 chars를 합치면 : ${numsChars}, <br> chars에 nums를 합치면 : ${charsNums}<br/>`);
+
+        let string1 = nums.join();
+        document.write(`구분자 없이 : ${string1} <br/>`);
+        let string2 = nums.join('/');
+        document.write(`구분자 / : ${string2} <br/>`);
+
+
+        let ret1 = nums.push(4, 5);
+        document.write(`length : ${ret1} | 배열 : ${nums} <br/>`);
+        let ret2 = nums.unshift(0);
+        document.write(`length : ${ret2} | 배열 : ${nums} <br/>`);
+
+        let popped1 = chars.pop();
+        document.write(`꺼낸 요소 : ${popped1} | 배열 : ${chars} <br/>`);
+        let popped2 = chars.shift();
+        document.write(`꺼낸 요소 : ${popped2} | 배열 : ${chars} <br/>`);
+
+        document.write(`<hr>`);
+
+        let study = ['html', 'css', 'javascript', 'jquery', 'react', 'nodejs'];
+
+        // 인수가 1개일 경우
+        let js = study.splice(2);
+        document.write(`변경된 배열 study : ${study}<br>`);
+        document.write(`반환된 배열 js : ${js}<br>`);
+
+        // 인수가 2개일 경우
+        let jquery = js.splice(1, 1);
+        document.write(`변경된 배열 js : ${js}<br>`);
+        document.write(`반환된 배열 jquery : ${jquery}<br>`);
+
+        // 인수가 3개 이상일 경우
+        let modernJs = js.splice(1, 0, 'typescript');
+        document.write(`변경된 배열 js : ${js}<br>`);
+        document.write(`반환된 배열 modernJs : ${modernJs}<br>`);
+
+        document.write("<hr>");
+        let colors = ["red", "green", "blue", "white", "black"];
+
+        let ret3 = colors.slice(2);
+
+        document.write(`ret3 : ${ret3}<br/>`);
+        document.write(`colors : ${colors}<br/>`); // slice 는 원본이 바뀌지 않음
+
+        let now2 = new Date();
+        document.write("year : " + now2.getFullYear() + "<br/>")
+        document.write("month : " + (now2.getMonth() + 1) + "<br/>")
+        document.write("date : " + now2.getDate() + "<br/>")
+        document.write("year : " + now2.getFullYear() + "<br/>")
+        document.write("hour : " + now2.getHours() + "<br>");
+        document.write("minute : " + now2.getMinutes() + "<br>");
+        document.write("second : " + now2.getSeconds() + "<br>");
+        document.write("millisecond : " + now2.getMilliseconds() + "<br>");
+        document.write("day : " + now2.getDay() + "<hr>");
     </script>
 </head>
+
 <body>
-    
+    <a href="js02.html">js02.html</a>
 </body>
+
 </html>
