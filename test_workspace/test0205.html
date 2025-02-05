@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test0205</title>
+    <script>
+        document.write('1. 배열에 1 ~ 5 까지의 숫자를 넣은 다음 for문으로 값을 출력해보세요.<br/>');
+        let arr = [1, 2, 3, 4, 5]
+        for (let i = 0; i < arr.length; i++) {
+            document.write(i + " ");
+        }
+        document.write('<br/>');
+        document.write('2. 1 ~ 100까지의 숫자 중 5의 배수만 출력해보세요. for문 사용<br/>');
+        for (let i = 1; i <= 100; i++) {
+            if (i % 5 == 0) {
+                document.write(i + " ");
+            }
+        }
+        document.write('<br/>');
+        document.write('3. 1 ~ 100까지의 숫자 중 3의 배수만 출력해보세요. for문 사용 continue사용.<br/>');
+        for (let i = 1; i <= 100; i++) {
+            if (!(i % 3 == 0)) {
+                continue;
+            }
+            document.write(i + " ");
+        }
+        document.write('<br/>');
+        document.write('4. prompt로 입력한 값이 짝수인지 홀수인지 출력해보세요.<br/>');
+        document.write(`<button onclick="numCheck()">4번</button>`);
+        function numCheck() {
+            let name = prompt('숫자를 입력하세요.(정수만 입력해주세요.)');
+            (name % 2 == 0) ? alert('짝수입니다.') : alert('홀수입니다.');
+        }
+        document.write('<br/>');
+        document.write('5. 홀짝게임 만들기<br/>');
+        document.write('1) 난수를 발생시켜서 홀 or 짝 을 정한다.<br/>');
+        let ran = Math.floor((Math.random() * 2) + 1);
+        (ran % 2 == 0) ? document.write('짝') : document.write('홀');
+        document.write('<br/>');
+        document.write('2) prompt로 사용자의 입력을 받는다. 홀 or 짝<br/>');
+        document.write(`<button onclick="snifCheck()">5번</button>`);
+        document.write('<br/>');
+        document.write('3) 정답 여부를 알려준다.<br/>');
+        function snifCheck() {
+            let sniffling = prompt('홀 or 짝 을 입력해주세요.');
+            if (sniffling == '홀') {
+                if (ran % 2 == 1) {
+                    alert('정답입니다.');
+                } else {
+                    alert('오답입니다.');
+                }
+            } else if (sniffling == '짝') {
+                if (ran % 2 == 0) {
+                    alert('정답입니다.');
+                } else {
+                    alert('오답입니다.');
+                }
+            } else {
+                alert('홀 or 짝만 입력해주세요.');
+            }
+        }
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

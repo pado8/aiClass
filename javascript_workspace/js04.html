@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript</title>
+    <script>
+        let name;
+        console.log(typeof name);
+        name = 10;
+        console.log(typeof name);
+        name = "홍길동";
+        console.log(typeof name);
+
+        console.log(null == undefined);  // 값만 같으면 true
+        console.log(null === undefined);  // 값과 타입이 같아야 true
+
+        let student = { name: '홍길동', department: '컴퓨터공학과' };
+        console.log(student.name);
+        console.log(student.department);
+        console.log(typeof student);
+
+        console.log(typeof String(10), String(10))
+        console.log(typeof Boolean(0), Boolean(0))
+        console.log(typeof parseInt("1234"), parseInt("1234"))
+        console.log(typeof parseFloat("1234.1234"), parseFloat("1234.1234"))
+
+
+        console.log(typeof 10 + "문자열")  // 문자열 연결을 위해 숫자 10이 문자열로 변환됨.
+        console.log(typeof "3" * "5")  // 곱셈 연산을 위해 두 문자열이 모두 숫자로 변환됨.
+        console.log(typeof 1 - "문자열")  // NaN
+
+
+        var a = 10;
+        var b = 2;
+        console.log(a * b);
+        console.log(a / b);
+        console.log(a % b);
+        console.log(a ** b);
+
+        let c = 10;
+        let d = 20;
+        let e = 30;
+
+        c = d = e;
+        console.log(c);
+        console.log(d);
+        console.log(e);
+
+        console.log(a += b);
+        console.log(a -= b);
+
+
+        // a -= b;  // a = a - b;
+        // console.log(a);
+
+        // a *= b;  // a = a * b;
+        // console.log(a);
+
+        // a /= b;  // a = a / b;
+        // console.log(a);
+
+        // a %= b;  // a = a % b;
+        // console.log(a);
+
+        // console.log(a+=b);
+        // console.log(a-=b);
+        // console.log(a*=b);
+        // console.log(a/=b);
+        // console.log(a %= b);
+
+        let x = 10;
+        console.log(x++); // x 값을 먼저 사용해서 출력한 다음 x 값을 1 증가시킴
+        console.log(x);
+
+        let y = 10;
+        console.log(++y); // y 값을 먼저 1 증가시킨 후 y 값을 사용해서 출력
+
+        let z = 10;
+        let result = 30;
+
+        result = z++; // z를 먼저 사용해서 result에 넣은 다음 z를 1 증가시킨다.
+        console.log(result);
+
+        console.log(a > b);
+        console.log(a < b);
+        console.log(a != b);
+
+        let score1 = 10;
+        let score2 = 20;
+        let score3 = 30;
+        let score4 = 40;
+
+        console.log(score1 > score2 && score3 > score4); //false
+        console.log(score1 < score2 && score3 < score4); //true
+        console.log(score1 > score2 || score3 > score4); //false
+        console.log(score1 < score2 || score3 < score4); //true
+        console.log(!(score1 < score2)); //false
+
+        let scorex = 15;
+        console.log(scorex << 1); // scorex * 2 와 같은 결과
+
+        let scorey = 30;
+        console.log(scorey << 1); // scorey * 2 와 같은 결과
+
+        let scorez = 40;
+        console.log(scorez >> 1); // scorez / 2 와 같은 결과
+
+        // 삼항 연산자 *** 가장 중요 ***
+        let result2 = (scorex > scorey) ? scorex : scorey;
+        console.log(result2);
+        console.log((scorex > scorey) ? scorex : scorey);
+        
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
