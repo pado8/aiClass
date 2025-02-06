@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test0206</title>
+    <script>
+        document.write('1. 구구단을 가로방향으로 출력해보세요.<br/>');
+        for (let i = 1; i < 10; i++) {
+            for (let j = 1; j < 10; j++) {
+                if (j * i < 10) {
+                    document.write(j + ' * ' + i + ' = ' + j * i + ' | ');
+                } else {
+                    document.write(j + ' * ' + i + ' =' + j * i + ' | ');
+                }
+            }
+            document.write('<br/>');
+        }
+        document.write('2. 다음과 같은 모양을 이중for문을 사용해서 구현해보세요.<br/>');
+        for (let line = 0; line < 5; line++) {
+            for (let space = 0; space < 4 - line; space++) {
+                document.write('&nbsp');
+            }
+            for (let star = 2; star + line * 2 > 1; star--) {
+                document.write('*');
+            }
+            document.write('<br/>');
+        }
+        document.write('번외<br/>');
+
+
+        for (let line = 6; line > 1; line--) {
+            let spaces = "&nbsp".repeat(line);
+            document.write(spaces);
+            for (let star = line - 1; star < 12 - line; star++) {
+                document.write('*');
+            }
+            document.write(spaces + '<br/>');
+        }
+
+        document.write('3. book객체를 만들어서 각 속성을 출력해보세요.<br/>');
+        let book = {
+            title: 'Do it! HTML+CSS+자바스크립트 웹 표준의 정석',
+            price: '27000원'
+        }
+
+        document.write(book.title + '<br/>');
+        document.write(book.price + '<br/>');
+        document.write('4. 3번 book객체 3개를 배열에 넣고, for문으로 모든 데이터를 출력해보세요.<br/>');
+        let arr = [
+            { title: 'Do it! HTML+CSS+자바스크립트 웹 표준의 정석', price: '27000원' },
+            { title: 'Doit!자바완전정복', price: '25000원' },
+            { title: 'Doit!플러터앱개발&출시하기', price: '23000원' },
+        ];
+        for (let i = 0; i < arr.length; i++) {
+            document.write('책이름 : ' + arr[i].title + ' / 가격 : ' + arr[i].price + '<br/>');
+        }
+        document.write('5. div태그로 박스를 만들고, 버튼을 만들어서, 버튼을 클릭하면 div태그 박스가 사라지게 해보세요.번외) 버튼을 클릭하면 나타났다 사라지는 것을 반복하게 해보세요<br/>');
+    </script>
+</head>
+
+<body>
+    <div class="container" style="border:1px solid black; width: 500px; height: 300px;margin: 20px 0;transition: 1s;">
+    </div>
+    <button>박스 on/off 버튼</button>
+
+    <script>
+        let btn = document.querySelector('button');
+        btn.addEventListener('click', () => {
+            let cont = document.querySelector('.container');
+            if (cont.style.display == 'none') {
+                cont.style.display = 'block';
+            } else {
+                cont.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+
+</html>

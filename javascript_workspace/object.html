@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Object</title>
+    <script>
+        let person = {
+            name: "홍길동",
+            birthday: "030219",
+            pId: "1234567",
+            fullId: function () {
+                return this.birthday + this.pId;
+            }
+        };
+        document.write(person.name + "<br>");
+        document.write(person.fullId() + "<br>");
+
+        let person2 = {
+            name: "이순신",
+            birthday: "011211",
+            pId: "1111111",
+            fullId: () => {
+                return "123456789";
+            }
+        }
+        document.write(person2.name + "<br>");
+        document.write(person2.fullId() + "<br>");
+
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM</title>
+
+</head>
+
+<body>
+    <h1>JavaScript</h1>
+    <h1>JavaScript</h1>
+    <h2>JavaScript</h2>
+
+    <div class="title">JavaScript</div>
+    <div class="title">CSS</div>
+    <div id="subject">DOM</div>
+
+    <div class="content">
+        <div>
+            <div>JavaScript</div>
+        </div>
+    </div>
+
+    <div id="detail">
+        <ul>
+            <li>원산지 : 에디오피아</li>
+            <li style="display: none;">지역 : 이르가체프 코체레</li>
+            <li style="display: none;">농장 : 게뎀</li>
+        </ul>
+    </div>
+
+
+    <!-- 스크립트 -->
+    <script>
+        console.log(document.getElementsByTagName("h1"));
+        console.log(document.getElementsByTagName("h1")[0].innerText);
+        console.log(document.getElementsByTagName("h1")[1].innerText);
+
+        // let h1s=document.getElementsByTagName("h1");
+        console.log(document.getElementsByTagName("h1").length);
+        for (let h1 of document.getElementsByTagName("h1")) {
+            console.log(h1.innerText);
+        }
+
+        console.log(document.getElementsByClassName('title'));
+        console.log(document.getElementById('subject'));
+        console.log(document.querySelector('.content>div>div'));
+        console.log(document.querySelectorAll('div'));
+
+        let detail = document.querySelector('#detail > ul')
+        console.log(detail.innerText)
+        console.log(detail.innerHTML)
+
+    </script>
+
+</body>
+
+</html>

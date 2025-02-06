@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>array, object</title>
+    <script>
+        let student = {
+            name: '홍길동',
+            department: '컴퓨터공학과',
+            show: function () {
+                return this.name + ': ' + this.department;
+            }
+        };
+        document.write(student.show() + '<br/>');
+        let student2 = {
+            name: '이순신',
+            department: ['컴퓨터공학과', '철학과'],
+            show: function () {
+                return this.name + ': ' + this.department;
+            }
+        };
+        document.write(student2.show() + '<br/>');
+        document.write(student2.department[0] + '<br/>');
+        document.write(student2.department[1] + '<br/>');
+
+        // 학생목록 배열
+        let students = [student, student2];
+        document.write(students[0].name + '<br/>');
+        document.write(students[1].name + '<br/>');
+        document.write(students[1].department[0] + '<br/>');
+        document.write(students[1].department[1] + '<br/>');
+
+        let ourStudents = [
+            {name:'왕건', department: '수학과'},
+            {name:'이이', department: ['수학과', '국문학과']},
+        ];
+        
+        document.write(ourStudents[0].name + '<br/>');
+        document.write(ourStudents[1].name + '<br/>');
+        document.write(ourStudents[1].department[0] + '<br/>');
+        document.write(ourStudents[1].department[1] + '<br/>');
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

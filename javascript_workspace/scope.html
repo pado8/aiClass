@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>scope</title>
+    <script>
+
+        function f1() {
+            var num = 10; // 지역변수
+        }
+        f1();
+        // document.write(num + '<br/>'); //함수의 지역변수 num 사용 불가.
+
+        var num2; // 전역변수. 공용데이터로 사용가능
+        function f2() {
+            num2 = 20; // 전역변수 사용 가능
+        }
+        f2();
+        document.write(num2 + "<br>"); // 전역변수 사용 가능
+
+        function f3() {
+            num2 = 30; // 전역변수 사용 가능
+        }
+        f3();
+        document.write(num2 + "<br>"); // 전역변수 사용 가능
+
+        // x, y를 전역 변수로 선언함.
+        var x = 10, y = 20;
+
+        // sub()를 전역 함수로 선언함.
+        function sub() {
+            return x - y;		// 전역 변수인 x, y에 접근함.
+        }
+        document.write("전역 함수에서 x - y의 값은 " + sub() + "입니다.<br>");
+
+        // parentFunc()을 전역 함수로 선언함.
+        function parentFunc() {
+            var x = 1, y = 2;	// 전역 변수와 같은 이름으로 선언하여 전역 변수의 범위를 제한함.
+
+            function add() {	// add() 함수는 내부 함수로 선언됨.
+                return x + y;	// 전역 변수가 아닌 지역 변수 x, y에 접근함.
+            }
+            return add();
+        }
+        document.write("내부 함수에서 x + y의 값은 " + parentFunc() + "입니다.<br>");
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

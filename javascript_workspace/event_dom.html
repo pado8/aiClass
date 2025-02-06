@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event발생시 DOM작업</title>
+</head>
+
+<body>
+    <div class="container1">
+        <h1 id="heading">에디오피아 게뎁</h1>
+        <img src="img/coffee-pink.jpg" alt="커피잔" id="cup" width="200" height="200">
+    </div>
+    <script>
+        let heading = document.querySelector('#heading');
+        let cup = document.querySelector("#cup");
+        heading.onclick = () => heading.innerText = "추천! 오늘의 커피";
+        cup.onclick = () => cup.src = "img/coffee-blue.jpg";
+    </script>
+
+    <div class="container2" style="border:1px solid black; width: 500px; height: 300px;"></div>
+
+
+    <div class="container3">
+        <img src="img/kitty-1.png" alt="고양이" id="cat" width="200" height="200">
+    </div>
+
+    <script>
+        let cat = document.querySelector("#cat");
+
+        cat.addEventListener("mouseover", () => {
+            cat.src = "img/kitty-2.png";
+        });
+
+        cat.addEventListener("mouseout", () => {
+            cat.src = "img/kitty-1.png";
+        });
+
+        let container = document.querySelector(".container2");
+        container.onclick = (event) => {
+            console.log(`이벤트 발생 위치 : ${event.pageX}, ${event.pageY}`);
+        };
+    </script>
+</body>
+
+</html>
