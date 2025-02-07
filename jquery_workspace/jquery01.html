@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jquery</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#title').css('color','green');
+            $('.title').css('color','blue');
+            $('div>div>div').css('color','cyan');
+
+            $('#btn1').click(function () {
+                alert('btn1');
+            })
+            $('#btn2').on('click',function () {
+                alert('btn2');
+            })
+        });
+    </script>
+</head>
+<body>
+    <h1 id="title">jquery</h1>
+    <h1 class="title">jquery</h1>
+    <div>
+        <div>
+            <div>jquery</div>
+        </div>
+    </div>
+    <button id="btn1">btn1</button>
+    <button id="btn2">btn2</button>
+</body>
+</html>

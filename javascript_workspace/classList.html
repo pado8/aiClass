@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>classList</title>
+    <style>
+        .color1 {
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>JavaScript</h1>
+    <button id="btn1">btn1</button>
+    <button id="btn2">btn2</button>
+    <button id="btn3">btn3</button>
+
+    <script>
+        document.getElementById("btn1").addEventListener("click", function () {
+            document.getElementsByTagName("h1")[0].classList.add("color1");
+        });
+        document.getElementById("btn2").addEventListener("click", function () {
+            document.getElementsByTagName("h1")[0].classList.remove("color1");
+        });
+        document.getElementById("btn3").addEventListener("click", function () {
+            document.getElementsByTagName("h1")[0].classList.toggle("color1");
+        });
+    </script>
+</body>
+
+</html>
