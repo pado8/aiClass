@@ -1,0 +1,23 @@
+{
+    "name": "충청북도_분기별날씨현황",
+    "description": "충청북도의 분기별 날씨 현황을 제공합니다. 제공되는 데이터는 11개 시군의 평균값입니다. (컬럼:평균기온, 누적강수량, 일조시간, 바람의 월별 상,중,하순/바람은 월별 최대순간풍속(충북지역전체)만 제공하며 중,하순의 데이터는 0임) (행:올해, 작년, 평년/바람은 올해,작년만 제공) ",
+    "url": "https://www.data.go.kr/data/15029361/fileData.do",
+    "keywords": [
+        "기온,강수량,일조량"
+    ],
+    "license": "https://data.go.kr/ugs/selectPortalPolicyView.do",
+    "dateCreated": "2024-08-28",
+    "dateModified": "2024-08-28",
+    "datePublished": "2024-08-28",
+    "creator": {
+        "name": "충청북도",
+        "contactPoint": {
+            "contactType": "과학기술정책과",
+            "telephone": "+82-0432208445",
+            "@type": "ContactPoint"
+        },
+        "@type": "Organization"
+    },
+    "@context": "https://schema.org",
+    "@type": "Dataset"
+}

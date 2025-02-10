@@ -25,6 +25,15 @@
             $('#btn6').click(function () {
                 $('#message').fadeToggle();
             })
+            $('#btn7').click(function () {
+                $('#message').slideDown();
+            })
+            $('#btn8').click(function () {
+                $('#message').slideUp();
+            })
+            $('#btn9').click(function () {
+                $('#message').slideToggle();
+            })
         });
     </script>
 </head>
@@ -35,6 +44,9 @@
     <button id="btn4">fadeIn()</button>
     <button id="btn5">fadeOut()</button>
     <button id="btn6">fadeToggle()</button>
+    <button id="btn7">slideDown()</button>
+    <button id="btn8">slideUp()</button>
+    <button id="btn9">slideToggle()</button>
     <div id="message">jquery is ez~</div>
 </body>
 </html>
