@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>event 처리</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#btn1').click(function () {
+               console.log('btn1'); 
+            });
+            $('#btn2').on('click', function () {
+               console.log('btn2'); 
+            });
+            $('#btn3').on({
+                mouseenter:function () {
+                    $('#text').append("mouseenter<br/>")
+                    console.log('mouseenter');
+                },
+                mouseleave:function () {
+                    $('#text').append("mouseleave<br/>")
+                    console.log('mouseleave');
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <button id="btn1">click</button>
+    <button id="btn2">click</button>
+    <button id="btn3">click</button>
+    <div id="box1">box1</div>
+    <p id="text"></p>
+</body>
+</html>

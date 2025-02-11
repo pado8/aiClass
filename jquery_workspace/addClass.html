@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>addClass</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <style>
+        .lined {
+            text-decoration: line-through;
+            color: lightgray;
+        }
+    </style>
+    <script>
+        $(function () {
+            $('#addBtn').on('click', function () {
+               $('#first, #third').addClass('lined');
+            });
+            $('#removeBtn').on('click', function () {
+               $('#first, #third').removeClass('lined');
+            });
+            $('#toggleBtn').on('click', function () {
+               $('#first, #third').toggleClass('lined');
+            });
+            $('#hasBtn').on('click', function () {
+               alert(('#first').hasClass('lined'));
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <h1>addClass, removeClass, toggleClass</h1>
+
+    <p id="first">jQuery</p>
+    <p id="second">jQuery</p>
+    <p id="third">jQuery</p>
+
+    <button id="addBtn">클래스 추가</button>
+    <button id="removeBtn">클래스 제거</button>
+    <button id="toggleBtn">클래스 제거</button>
+    <button id="hasBtn">클래스 제거</button>
+
+</body>
+
+</html>
