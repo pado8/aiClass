@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test01</title>
+</head>
+<body>
+    <div id="container"></div>
+    <h1>IT도서등록</h1>
+    <form action="register.jsp" method="post">
+        <input type="hidden" name="type" value="direct">
+        <ul>
+            <li>
+                <label for="uid">제목</label>
+                <input type="text" name="title" id="uid" autofocus >
+            </li>
+            <li>
+                <label for="umail">가격</label>
+                <input type="text" name="price" id="umail">
+            </li>
+            <li>
+                <label for="pwd1">출판사</label>
+                <input type="text" name="publisher" id="pwd1">
+            </li>
+            <li>
+                <input type="radio" name="ebook" id="mailing_y" value="mailing_yes" checked>
+                <label for="mailing_y">ebook 제공</label>
+                <input type="radio" name="ebook" id="mailing_n" value="mailing_no">
+                <label for="mailing_n">ebook 제공 안함</label>
+            </li>
+            <li>
+                <label for="job">난이도</label>
+                <select id="job" name="level">
+                    <option value="상">상</option>
+                    <option value="중">중</option>
+                    <option value="하">하</option>
+                </select>
+            </li>
+            <li>
+                <label for="hobby">분류</label>
+                <input type="checkbox" name="class" value="백엔드">백엔드
+                <input type="checkbox" name="class" value="프론트엔드">프론트엔드
+                <input type="checkbox" name="class" value="프로그래밍언어">프로그래밍언어
+                <input type="checkbox" name="class" value="데이터베이스">데이터베이스
+            </li>
+            <li>
+                <label for="picture">사진</label>
+                <input type="file" name="picture" id="picture">
+            </li>
+            <li>
+                <label for="about">책설명</label><br>
+                <textarea cols="40" rows="5" name="about" id="about"></textarea>
+            </li>
+        </ul>
+        <div>
+            <input type="submit" name="submit" value="등록">
+            <input type="reset" name="reset" value="취소">
+        </div>
+    </form>
+</body>
+</html>

@@ -1,0 +1,62 @@
+@font-face {
+    font-family: 'yoonET';
+    src: url(../font/윤고딕310.woff);
+ }
+ @font-face {
+    font-family: 'yoonT';
+    src: url(../font/윤고딕320.woff);
+ }
+ @font-face {
+    font-family: 'yoonR';
+    src: url(../font/윤고딕330.woff);
+ }
+ @font-face {
+    font-family: 'yoonSB';
+    src: url(../font/윤고딕340.woff);
+ }
+ @font-face {
+    font-family: 'yoonB';
+    src: url(../font/윤고딕350.woff);
+ }
+ @font-face {
+    font-family: 'yoonEB';
+    src: url(../font/윤고딕360.woff);
+ }
+ 
+ /* 기본 CSS Reset */
+ *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; font-family: 'yoonR','돋움','sans-serif';}
+ body, h1, h2, h3, h4, p, figure, blockquote, dl, dd { margin: 0; }
+ body { line-height: 1.5; }
+ ol, ul { list-style: none; }
+ a { text-decoration: none; color: inherit; }
+ img, video { max-width: 100%; height: auto; }
+ input, button, textarea, select { font: inherit; }
+
+ #nav {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 81px;
+    background-color: #fff;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1)
+}
+ #nav .nav-item{
+    width: 65%;
+    height: 100%;
+    display: block;
+    margin: auto;
+ }
+ #nav .nav-logo{
+    display: flex;
+    width: 116px;
+    height: 80px;
+    line-height: 80px;
+    align-items: center;
+    justify-content: center;
+ }
+ #nav .nav-logo a{
+   width: 116px;
+   height: 20px;
+   background: url(../img/logo_black.svg);
+ }
