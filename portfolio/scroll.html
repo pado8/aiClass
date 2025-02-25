@@ -39,7 +39,7 @@
     <!-- 두 번째 섹션 - 가로 스크롤 -->
     <div id="horizontal-section">
         <div class="horizontal-wrapper">
-            <div class="horizontal-item" style="background: red;">가로 스크롤 1</div>
+            <div class="horizontal-item" style="background: cyan;">가로 스크롤 1</div>
             <div class="horizontal-item" style="background: blue;">가로 스크롤 2</div>
             <div class="horizontal-item" style="background: green;">가로 스크롤 3</div>
             <div class="horizontal-item" style="background: purple;">가로 스크롤 4</div>
@@ -70,9 +70,10 @@
             scale: 3, 
             scrollTrigger: {
                 trigger: "#section1",
-                start: "top 50%",
-                end: "bottom top",
-                scrub: true
+                start: "top top",       // 섹션 상단에서 시작
+                end: "+=100%",           // 스크롤 거리 100% 만큼 애니메이션 진행 (필요에 따라 조정)
+                scrub: true,
+                pin: true               // 섹션을 고정하여 텍스트가 최대 크기에 도달할 때까지 스크롤 방지
             }
         });
 
