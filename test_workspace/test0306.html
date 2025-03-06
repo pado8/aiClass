@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>test</title>
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+</head>
+
+<body>
+  <p>1. javascript의 classList를 사용해서 다음 버튼을 클릭하면 ‘javascript’라는 글자가 사라지게 하세요.</p>
+  <button id="btn1">btn1</button>
+  <h1 class="num1">JavaScript</h1>
+  <p>2. javascript의 querySelector()를 사용해서 다음 태그에 mouseover시 ‘자바스크립트’로, mouseout시 ‘javascript’로 바뀌게 하세요.</p>
+  <h1 id="title">javascript</h1>
+  <p>3. jquery의 prev()를 사용해서 다음 태그에서 id가 base인 div태그 바로 전 태그의 글자색을 red로 변경하세요.</p>
+  <div class="container">
+    <div>div 요소</div>
+    <div>div 요소</div>
+    <div>div 요소</div>
+    <div id="base">div 요소</div>
+    <div>div 요소</div>
+    <div>div 요소</div>
+    <div>div 요소</div>
+  </div>
+
+  <p>4. jquery의 ajax()를 사용해서 다음 member.json 파일에서 name,age,tel을 출력하세요.</p>
+  <span id="json"></span>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // 1번
+      document.getElementById('btn1').onclick = function () {
+        document.querySelector(".num1").style.opacity = '0';
+      }
+      // 2번
+      let title = document.querySelector('#title');
+      title.addEventListener("mouseover", () => {
+        title.innerHTML = '자바스크립트';
+      });
+      title.addEventListener("mouseout", () => {
+        title.innerHTML = 'javascript';
+      });
+      // 3번
+      $("#base").prev().css({ "color": "red" });
+      // 4번
+      $.ajax({
+        url: 'member.json',
+        success: function (data) {
+          let html = '';
+          for (let i = 0; i < data.length; i++) {
+            html += (data[i].name + ',' + data[i].age + ',' + data[i].tel + '<br/> ');
+            $('#json').html(html);
+          }
+        }
+      });
+    }); 
+  </script>
+
+</body>
+
+</html>

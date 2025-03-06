@@ -9,12 +9,15 @@
     <script src="https://unpkg.com/@studio-freight/lenis@1.0.32/dist/lenis.min.js"></script> 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/locomotive-scroll/4.1.0/locomotive-scroll.min.js"></script>
     <style>
-        body { margin: 0; font-family: Arial, sans-serif; overflow-x: hidden; }
+        body { margin: 0; font-family: Arial, sans-serif; overflow-x: hidden; background: black}
         .section { height: 100vh; display: flex; align-items: center; justify-content: center; }
         
         /* 첫 번째 섹션 - 글자 크기 증가 */
         #section1 { background: black; color: white; font-size: 2rem; }
-        
+        #section2 { background: black; color: white; font-size: 2rem; }
+        #section3 { background: black; color: white; font-size: 2rem; }
+        #growing-text2 {opacity: 0;}
+        #growing-text3 {opacity: 0;}
         /* 두 번째 섹션 - 가로 스크롤 */
         #horizontal-section { height: 100vh; display: flex; align-items: center; overflow: hidden; }
         .horizontal-wrapper { display: flex; width: 400vw; }
@@ -33,7 +36,13 @@
     
     <!-- 첫 번째 섹션 -->
     <div id="section1" class="section">
-        <h1 id="growing-text">안녕하세요</h1>
+        <h1 id="growing-text1">Hello World!</h1>
+    </div>
+    <div id="section2" class="section">
+        <h1 id="growing-text2">프론트엔드 개발자로 시작해, 이제는</h1>
+    </div>
+    <div id="section3" class="section">
+        <h1 id="growing-text3">풀스택으로 도약하는 4년 차 개발자 노태효입니다.</h1>
     </div>
     
     <!-- 두 번째 섹션 - 가로 스크롤 -->
@@ -66,10 +75,30 @@
         requestAnimationFrame(raf);
         
         // 첫 번째 섹션 - 글자 크기 증가
-        gsap.to("#growing-text", {
-            scale: 3, 
+        gsap.to("#growing-text1", {
+            scale: 2, opacity: 0,
             scrollTrigger: {
                 trigger: "#section1",
+                start: "top top",       // 섹션 상단에서 시작
+                end: "+=100%",           // 스크롤 거리 100% 만큼 애니메이션 진행 (필요에 따라 조정)
+                scrub: true,
+                pin: true               // 섹션을 고정하여 텍스트가 최대 크기에 도달할 때까지 스크롤 방지
+            }
+        });
+        gsap.to("#growing-text2", {
+            scale: 1.2, opacity: 2,
+            scrollTrigger: {
+                trigger: "#section2",
+                start: "top top",       // 섹션 상단에서 시작
+                end: "+=100%",           // 스크롤 거리 100% 만큼 애니메이션 진행 (필요에 따라 조정)
+                scrub: true,
+                pin: true               // 섹션을 고정하여 텍스트가 최대 크기에 도달할 때까지 스크롤 방지
+            }
+        });
+        gsap.to("#growing-text3", {
+            scale: 1.2, opacity: 2,
+            scrollTrigger: {
+                trigger: "#section3",
                 start: "top top",       // 섹션 상단에서 시작
                 end: "+=100%",           // 스크롤 거리 100% 만큼 애니메이션 진행 (필요에 따라 조정)
                 scrub: true,
