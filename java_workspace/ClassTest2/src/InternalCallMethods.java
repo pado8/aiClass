@@ -8,21 +8,18 @@ public class InternalCallMethods {
 	    System.out.println(b);
 	}
 
-    private static double sum(int a, double d) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	private static int twice(int i) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
 	public static void print() {
-        System.out.println("안녕");
-    }
-}
+		System.out.println("안녕");
+	}
+	
+	private static int twice(int k) {
+		return k * 2;
+	}
+	
+    private static double sum(int m, double n) {
+		return m + n;
+	}
 
-InternalCallMethods
-EffectOfReferenceDataArgument
+
+}
 
