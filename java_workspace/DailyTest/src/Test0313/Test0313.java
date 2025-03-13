@@ -54,22 +54,43 @@ public class Test0313 {
 		System.out.println("3번. 책제목, 저자, 출판사, 가격을 입력하세요.(Enter로 구분합니다.)");
 		data.add(new Book(s.nextLine(),s.nextLine(),s.nextLine(),s.nextLine()));
 		for (Book b : data) {
-			System.out.println("책제목 : " + b.title + ", 저자 : " + b.name + ", 출판사 : " + b.publisher + ", 가격 : " + b.price);
+			System.out.println("3번. 책제목 : " + b.title + ", 저자 : " + b.name + ", 출판사 : " + b.publisher + ", 가격 : " + b.price);
 		}
 //		4. HashMap에 ArrayList<Book>을 넣어서 처리하기.
 //		HashMap의 key는 "철학", "언어", "컴퓨터공학"
-		Map<String,Book> books = new HashMap<String,Book>();
-		books.put("철학", new Book(s.nextLine(),s.nextLine(),s.nextLine(),s.nextLine()));
-		books.put("언어", new Book(s.nextLine(),s.nextLine(),s.nextLine(),s.nextLine()));
-		books.put("컴퓨터공학", new Book(s.nextLine(),s.nextLine(),s.nextLine(),s.nextLine()));
-		//books.put("철학", new Book("철학에 대하여","김철학","아이언메이스","85억원"));
-		//books.put("언어", new Book("0개국어","최언어","바디랭기지","65564원"));
-		//books.put("컴퓨터공학", new Book("컴퓨터수리의 모든 것","마수리","매직키드","5090원"));
-		Set<String> keySet2 = books.keySet();
-		System.out.println("4번.");
-		for (String k : keySet2) {
-			Book s1 = books.get(k);
-			System.out.println("책제목 : " + s1.title + ", 저자 : " + s1.name + ", 출판사 : " + s1.publisher + ", 가격 : " + s1.price);
-		}
+//		
+		Map<String, ArrayList<Book>> books = new HashMap<>();
+		books.put("철학", new ArrayList<Book>());
+		books.put("언어", new ArrayList<Book>());
+		books.put("컴퓨터공학", new ArrayList<Book>());
+		
+		System.out.println("4번. 책의 카테고리(철학, 언어, 컴퓨터공학), 책제목, 저자, 출판사, 가격을 입력하세요.");
+        for (int i = 0; i < 3; i++) {
+            System.out.println("책의 카테고리를 입력하세요:");
+            String category = s.nextLine();
+            if (!books.containsKey(category)) {
+                System.out.println("잘못된 카테고리입니다. (철학, 언어, 컴퓨터공학 중 하나를 입력하세요.)");
+                i--;
+                continue;
+            }
+            System.out.println("책제목을 입력하세요:");
+            String title = s.nextLine();
+            System.out.println("저자를 입력하세요:");
+            String name = s.nextLine();
+            System.out.println("출판사를 입력하세요:");
+            String publisher = s.nextLine();
+            System.out.println("가격을 입력하세요:");
+            String price = s.nextLine();
+            
+            Book book = new Book(title, name, publisher, price);
+            books.get(category).add(book);
+        }
+        for (String cat : books.keySet()) {
+            System.out.println("카테고리: " + cat);
+            for (Book b : books.get(cat)) {
+                System.out.println("책제목: " + b.title + ", 저자: " + b.name + ", 출판사: " + b.publisher + ", 가격: " + b.price);
+            }
+        }
+		
 	}
 }
