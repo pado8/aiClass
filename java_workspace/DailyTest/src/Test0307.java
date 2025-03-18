@@ -13,6 +13,7 @@ public class Test0307 {
 		    	System.out.println("종료되었습니다.");
 		    	break;
 		    }
+			s.close();
 		}	
 //	2.다음 모양을 for문 안에 for문을  하나만 사용해서 구현해보세요. if문은 사용 가능		
 		for (int i = 1; i < 6; i++) {

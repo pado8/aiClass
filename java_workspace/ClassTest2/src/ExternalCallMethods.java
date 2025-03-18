@@ -34,7 +34,7 @@ public class ExternalCallMethods {
 		a.printMonth(5);
 		a.printMonth(15);
 		
-		 A1 a1; // a1은 reference 변수. A1의 인스턴스를 가리킬 대상이나 아직 reference값이 없음
+		 //A1 a1; // a1은 reference 변수. A1의 인스턴스를 가리킬 대상이나 아직 reference값이 없음
 	}
 
 }

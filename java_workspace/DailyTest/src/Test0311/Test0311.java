@@ -74,6 +74,7 @@ public class Test0311 {
 			b.print(b.name, b.korean, b.english, b.math);
 			System.out.println();
 		}
+		s.close();
 	}
 	
 	public static void circle(int r) {

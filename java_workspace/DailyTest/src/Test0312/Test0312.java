@@ -68,7 +68,7 @@ public class Test0312 {
 			System.out.println("이메일 : " + a.email);
 		}
 		System.out.println("모두 입력 완료했습니다.");
-
+		s.close();
 		//2번 
 		
 		Mouse m = new Mouse();

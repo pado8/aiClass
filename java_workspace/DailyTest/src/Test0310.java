@@ -102,7 +102,7 @@ public class Test0310 {
 		System.out.println("9번 학번,이름,학과를 입력하세요.(엔터로 구분)");
 		Student student = new Student();
 		student.showinfo();
-
+		s.close();
 	}
 
 }
