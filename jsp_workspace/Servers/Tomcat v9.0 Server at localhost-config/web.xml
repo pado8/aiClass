@@ -122,7 +122,17 @@
             <param-value>false</param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>
+        
+        
     </servlet>
+    <servlet>
+        <servlet-name>Hello</servlet-name>
+        <servlet-class>ch03.MyServlet1</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Hello</servlet-name>
+		<url-pattern>/ch03/Hello</url-pattern>
+	</servlet-mapping>
 
 
   <!-- The JSP page compiler and execution servlet, which is the mechanism  -->
