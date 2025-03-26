@@ -12,9 +12,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h2>Core Tags3</h2>
+	<h2>Core Tags - forEach, forToken</h2>
 	<c:set var="arr" value="<%=str1%>"/>
-	<c:forEach var="i" items="${arr}" begin="0" step="1" end="3">
+	<%-- <c:forEach var="i" items="${arr}" begin="0" step="1" end="3"> --%>
+	<c:forEach var="i" items="${arr}" >
 		${i}<br/>
 	</c:forEach>
 	<hr align="left" width="220"/>
