@@ -53,9 +53,9 @@ public class LoginServlet extends HttpServlet {
 		MemberDAO mDao = MemberDAO.getInstance();
 		int result = mDao.userCheck(userid, pwd);
 		if (result == 1) {// id,비밀번호가 일치할 때
-			/* MemberVO mVo = mDao.getMember(userid); */
+			MemberVO mVo = mDao.getMember(userid); /* 로그인할때마다 정보가져오는거 (굳이 로그인할때마다 정보를 다 가져온다? 별로같아서 주석 */
 			HttpSession session = request.getSession();
-			 session.setAttribute("loginUser", userid);
+			 session.setAttribute("loginUser", mVo);
 			url = "main.do";
 			
 			response.sendRedirect(url); //주소변경

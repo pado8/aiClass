@@ -55,7 +55,7 @@ function joinCheck() {
 		frm.pwd.focus();
 		return false;
 	}
-	if (document.frm.reid.value.length == 0 || document.frm.reid.value != document.frm.userid.value) {
+	if (document.frm.reid.value != document.frm.userid.value) {
 		alert("중복 체크를 하지 않았습니다.");
 		frm.userid.focus();
 		return false;

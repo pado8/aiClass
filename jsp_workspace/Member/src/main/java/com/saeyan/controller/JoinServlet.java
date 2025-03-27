@@ -19,27 +19,31 @@ import com.saeyan.dto.MemberVO;
 @WebServlet("/join.do")
 public class JoinServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public JoinServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public JoinServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("member/join.jsp");
 		dispatcher.forward(request, response);
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		String name = request.getParameter("name");
 		String userid = request.getParameter("userid");
@@ -47,8 +51,6 @@ public class JoinServlet extends HttpServlet {
 		String email = request.getParameter("email");
 		String phone = request.getParameter("phone");
 		String admin = request.getParameter("admin");
-		
-		//model객체(VO)에 화면에 입력된 정보를 넣는다.
 		MemberVO mVo = new MemberVO();
 		mVo.setName(name);
 		mVo.setUserid(userid);
@@ -57,7 +59,7 @@ public class JoinServlet extends HttpServlet {
 		mVo.setPhone(phone);
 		mVo.setAdmin(Integer.parseInt(admin));
 		MemberDAO mDao = MemberDAO.getInstance();
-		int result = mDao.insertMember(mVo);//insert할 때 vo를 사용
+		int result = mDao.insertMember(mVo);
 		HttpSession session = request.getSession();
 		if (result == 1) {
 			session.setAttribute("userid", mVo.getUserid());
@@ -65,10 +67,8 @@ public class JoinServlet extends HttpServlet {
 		} else {
 			request.setAttribute("message", "회원 가입에 실패했습니다.");
 		}
-		RequestDispatcher dispatcher = request
-				.getRequestDispatcher("member/login.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("member/login.jsp");
 		dispatcher.forward(request, response);
 	}
-
 
 }

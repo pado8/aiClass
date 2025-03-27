@@ -28,6 +28,7 @@ public class MainServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// 로그인 여부 판단해서 로그인하지 않은 경우는 login.do로 이동
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/main.jsp");
 		dispatcher.forward(request, response);//주소가 변경되지 않음.
 	}
