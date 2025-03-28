@@ -37,7 +37,7 @@ public class LoginServlet extends HttpServlet {
 		HttpSession session = request.getSession(); // session 객체 구하기
 		if (session.getAttribute("loginUser") != null) {// 이미 로그인 된 사용자이면
 			url = "main.jsp"; // 메인 페이지로 이동한다.
-		}
+		} 
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(url);
 		dispatcher.forward(request, response);//주소가 변경되지 않음.
