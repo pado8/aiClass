@@ -32,6 +32,7 @@ public class MemberDAO {
 		Context envContext = (Context) initContext.lookup("java:/comp/env");
 		DataSource ds = (DataSource) envContext.lookup("jdbc/myoracle");
 		conn = ds.getConnection();
+		System.out.println(conn);
 		return conn;
 	}
 
