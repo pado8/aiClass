@@ -39,7 +39,7 @@ public class FileUtil {
 		}
 		 
 		//원본 파일명 반환
-		return originalFileName;			
+		return originalFileName;
 	}
 	 
 	//파일명 변경

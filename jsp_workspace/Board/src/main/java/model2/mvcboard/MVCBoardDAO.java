@@ -21,7 +21,7 @@ public class MVCBoardDAO extends DBConnPool {
         }
         try {
             stmt = con.createStatement();
-            rs = stmt.executeQuery(query);
+			 rs = stmt.executeQuery(query); 
             rs.next();
             totalCount = rs.getInt(1);
         }

@@ -28,10 +28,10 @@ public class ViewController extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		 // 게시물 불러오기
         MVCBoardDAO dao = new MVCBoardDAO();
-        String idx = req.getParameter("idx");
+        String idx = request.getParameter("idx");
         dao.updateVisitCount(idx);  // 조회수 1 증가
         MVCBoardDTO dto = dao.selectView(idx);
         dao.close();
@@ -40,22 +40,22 @@ public class ViewController extends HttpServlet {
         dto.setContent(dto.getContent().replaceAll("\r\n", "<br/>"));
         
         //첨부파일 확장자 추출 및 이미지 타입 확인
-        String ext = null, fileName = dto.getSfile();
-        if(fileName!=null) {
-        	ext = fileName.substring(fileName.lastIndexOf(".")+1);
-        }
-        String[] mimeStr = {"png","jpg","gif"};
-        List<String> mimeList = Arrays.asList(mimeStr);
-        boolean isImage = false;
-        if(mimeList.contains(ext)) {
-        	isImage = true;
-        }
+         String ext = null, fileName = dto.getSfile();
+         if(fileName!=null) {
+         	ext = fileName.substring(fileName.lastIndexOf(".")+1);
+         }
+         String[] mimeStr = {"png","jpg","gif"};
+         List<String> mimeList = Arrays.asList(mimeStr);
+         boolean isImage = false;
+         if(mimeList.contains(ext)) {
+         	isImage = true;
+         }
         
         
         // 게시물(dto) 저장 후 뷰로 포워드
-        req.setAttribute("dto", dto);
-        req.setAttribute("isImage", isImage);
-        req.getRequestDispatcher("/14MVCBoard/View.jsp").forward(req, resp);
+        request.setAttribute("dto", dto);
+        request.setAttribute("isImage", isImage);
+        request.getRequestDispatcher("/14MVCBoard/View.jsp").forward(request, response);
 	}
 
 	/**

@@ -49,13 +49,6 @@ public class ListController extends HttpServlet {
 		}
 		int totalCount = dao.selectCount(map); // 게시물 개수
 
-		/* 페이지 처리 start */
-		/*
-		 * ServletContext application = getServletContext(); int pageSize =
-		 * Integer.parseInt(application.getInitParameter("POSTS_PER_PAGE")); int
-		 * blockPage =
-		 * Integer.parseInt(application.getInitParameter("PAGES_PER_BLOCK"));
-		 */
 		int pageSize = 10; // 한페이지에 출력할 글의 갯수
 		int blockPage = 5; // 페이지번호의 갯수 1.2.3.4.5
 		
@@ -77,10 +70,7 @@ public class ListController extends HttpServlet {
 
 		// 뷰에 전달할 매개변수 추가
 		// 1.2.3.4.5 페이지번호 생성
-		String pagingImg = BoardPage.pagingStr(totalCount, pageSize, blockPage, pageNum, "../mvcboard/list.do"); // 바로가기
-																													// 영역
-																													// HTML
-																													// 문자열
+		String pagingImg = BoardPage.pagingStr(totalCount, pageSize, blockPage, pageNum, "../mvcboard/list.do"); // 바로가기 영역 HTML 문자열
 		map.put("pagingImg", pagingImg);
 		map.put("totalCount", totalCount);
 		map.put("pageSize", pageSize);
