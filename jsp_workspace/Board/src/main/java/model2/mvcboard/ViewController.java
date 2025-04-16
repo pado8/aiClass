@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -32,7 +33,30 @@ public class ViewController extends HttpServlet {
 		 // 게시물 불러오기
         MVCBoardDAO dao = new MVCBoardDAO();
         String idx = request.getParameter("idx");
-        dao.updateVisitCount(idx);  // 조회수 1 증가
+        
+        String cookieName = "viewed_" + idx;
+        boolean alreadyViewed = false;
+        
+        Cookie[] cookies = request.getCookies();
+        if (cookies != null) {
+            for (Cookie c : cookies) {
+                if (cookieName.equals(c.getName())) {
+                    alreadyViewed = true;
+                    break;
+                }
+            }
+        }
+		if (!alreadyViewed) {
+			dao.updateVisitCount(idx);
+			Cookie viewCookie = new Cookie(cookieName, "true");
+			viewCookie.setMaxAge(60 * 60 * 24 * 1);  // 1일간 유지
+			viewCookie.setPath(request.getContextPath());
+			response.addCookie(viewCookie);
+			System.out.println("조회수 증가 & 쿠키 저장: " + cookieName);
+		} else {
+			System.out.println("이미 본 글, 조회수 미증가: " + cookieName);
+		}
+        
         MVCBoardDTO dto = dao.selectView(idx);
         dao.close();
 
@@ -62,7 +86,6 @@ public class ViewController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 
