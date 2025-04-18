@@ -8,4 +8,19 @@
 		select * from tbl_board where bno > 0
 	]]>
 	</select>
+	
+	<insert id="insert">
+		insert into tbl_board(bno, title, content, writer)
+		values(seq_board.nexval, #{title}, #{content}, #{writer})
+	</insert>
+	
+	<insert id="insertSelectKey">
+		<!-- bno 값을 먼저 구한 다음 BoardVO에 넣는다. -->
+		<selectKey keyProperty="bno" order="BEFORE">
+			select seq_board.nextval from dual
+		</selectKey>
+		insert into tbl_board(bno, title, content, writer)
+		values(seq_board.nexval, #{title}, #{content}, #{writer})
+	</insert>
+	
 </mapper>
