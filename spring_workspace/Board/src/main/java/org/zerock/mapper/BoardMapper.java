@@ -15,4 +15,7 @@ public interface BoardMapper {
 	public void insert(BoardVO board);
 	//등록. sequence로 만들어진 bno값을 구해서 처리
 	public void insertSelectKey(BoardVO board);
+	//t상세보기
+	public BoardVO read(Long bno);
+
 }
