@@ -11,7 +11,9 @@ public interface KeyWordMapper {
 	//목록
 	public List<KeyWordVO> getList();
 	//등록
-	public void insert(KeyWordVO KeyWordVO);
+	public void insert(KeyWordVO Word);
 	//등록. sequence로 만들어진 bno값을 구해서 처리
-	public void insertSelectKey(KeyWordVO KeyWordVO);
+	public void insertSelectKey(KeyWordVO Word);
+	//상세보기
+	public KeyWordVO read(Long no);
 }

@@ -29,12 +29,12 @@ public class BoardServiceImpl implements BoardService{
 
 	@Override
 	public boolean modify(BoardVO board) {
-		return false;
+		return mapper.update(board) == 1; //영향을 받은 행의 수가 1이면 true.
 	}
 
 	@Override
 	public boolean remove(Long bno) {
-		return false;
+		return mapper.delete(bno) == 1; //영향을 받은 행의 수가 1이면 true.
 	}
 
 	@Override

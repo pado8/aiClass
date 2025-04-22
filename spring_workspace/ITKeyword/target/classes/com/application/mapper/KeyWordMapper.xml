@@ -5,7 +5,7 @@
 <mapper namespace="com.application.mapper.KeyWordMapper">
 	<select id="getList" resultType="com.application.domain.KeyWordVO">
 	<![CDATA[
-		select * from itkeyword where no > 0
+		select * from itkeyword where no > 0 order by no desc
 	]]>
 	</select>
 	
@@ -15,12 +15,18 @@
 	</insert>
 	
 	<insert id="insertSelectKey">
-		<!-- bno 값을 먼저 구한 다음 keywordVO에 넣는다. -->
-		<selectKey keyProperty="no" order="BEFORE">
+		<!-- no 값을 먼저 구한 다음 keywordVO에 넣는다. -->
+		<selectKey keyProperty="no" order="BEFORE" resultType="long">
 			select seq_keyno.nextval from dual
 		</selectKey>
 		insert into itkeyword(no, keyword, description, regdate)
 		values(seq_keyno.nextval, #{keyword}, #{description}, #{regdate})
 	</insert>
+	
+	<select id="read" resultType="com.application.domain.KeyWordVO">
+		select * from itkeyword where no = #{no}
+	</select>
+	
+	
 	
 </mapper>

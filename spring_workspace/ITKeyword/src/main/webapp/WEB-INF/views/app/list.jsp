@@ -18,7 +18,7 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             List
-                            <a href="/board/register" class="btn btn-primary btn-xs pull-right">Register</a>
+                            <a href="/board/register" class="btn btn-primary btn-xs pull-right">단어 등록</a>
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -26,8 +26,8 @@
                                 <thead>
                                     <tr>
                                        	<th>번호</th>
-										<th>제목</th>
-										<th>작성자</th>
+										<th>단어</th>
+										<th>단어 뜻</th>
 										<th>작성일</th>
 										<th>수정일</th>
                                     </tr>
@@ -36,7 +36,7 @@
                                 	<c:forEach items="${list}" var="board">
 	                                    <tr>
 	                                       	<td><c:out value="${board.bno}" /></td>
-											<td><a href='/board/get?bno=<c:out value="${board.bno}"/>'><c:out value="${board.title}"/></a></td>
+											<td><a class='move' href='<c:out value="${board.bno}"/>'><c:out value="${board.title}" /></a></td>
 											<td><c:out value="${board.writer}" /></td>
 											<td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.regdate}" /></td>
 											<td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.updateDate}" /></td>
@@ -83,11 +83,11 @@
 			}
 	
 			if (parseInt(result) > 0) {
-				$(".modal-body").html("게시글 " + parseInt(result) + " 번이 등록되었습니다.");
+				$(".modal-body").html("단어 " + parseInt(result) + " 번이 등록되었습니다.");
 			}
 			$("#myModal").modal("show");
        }
-       var actionForm = $("#actionForm");
+       
        $(".move").on("click", funtion(e)){
     	   e.preventDefault(); // 링크를 클릭했을때 기본 이벤트처리(링크는 다른 페이지로 넘어가는 동작이 기본)을 취소
     	   actionForm.append("<input type='hidden' name='bno' value='"+$(this).attr("href")+"'>");

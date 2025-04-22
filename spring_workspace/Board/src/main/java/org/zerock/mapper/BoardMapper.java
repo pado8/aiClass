@@ -17,5 +17,11 @@ public interface BoardMapper {
 	public void insertSelectKey(BoardVO board);
 	//t상세보기
 	public BoardVO read(Long bno);
+	//수정
+	public int update(BoardVO board); //리턴값은 영향을 받은 행의 수
+	//삭제
+	public int delete(Long bno); //리턴값은 영향을 받은 행의 수
+
+	//public int getTotalCount(Criteria cri);
 
 }

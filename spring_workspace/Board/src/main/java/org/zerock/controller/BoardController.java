@@ -36,6 +36,26 @@ public class BoardController {
 	}
 	
 	//상세보기
-	
+	@GetMapping({"/get","/modify"})
+	public void get(Long bno,Model model) {
+		model.addAttribute("board", service.get(bno));
+	}
+	//수정
+	 @PostMapping("/modify")
+	 public String modify(BoardVO board, RedirectAttributes rttr) {
+		 if (service.modify(board)) {
+			 rttr.addFlashAttribute("result", "success");
+		 }
+		 return "redirect:/board/list";
+ 	}
+	//수정
+	 @PostMapping("/remove")
+	 public String remove(Long bno, RedirectAttributes rttr) {
+		 if (service.remove(bno)) {
+			 rttr.addFlashAttribute("result", "success");
+		 }
+		 return "redirect:/board/list";
+ 	}
+ 
 	
 }
