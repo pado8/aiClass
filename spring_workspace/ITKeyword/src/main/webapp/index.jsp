@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<a href="/abb/application">어플리케이션</a>
+	<a href="/word/list">IT KEY Word</a>
 </body>
 </html>

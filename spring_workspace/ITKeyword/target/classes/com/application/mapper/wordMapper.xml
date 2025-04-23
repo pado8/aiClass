@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.application.mapper.WordMapper">
+
+	<sql id="criteria">
+    <trim prefix="(" suffix=") and" prefixOverrides="or">
+        <foreach item="type" collection="typeArr">
+            <trim prefix="or">
+                <choose>
+                    <when test="type=='T'.toString()">
+                        keyword like '%'||#{searchkeyword}||'%'
+                    </when>
+                    <when test="type=='C'.toString()">
+                        description like '%'||#{searchkeyword}||'%'
+                    </when>
+                </choose>
+            </trim>
+        </foreach>
+    </trim>
+</sql>
+
+
+
+
+	<select id="getList" resultType="com.application.domain.WordVO">
+	<![CDATA[
+		select * from itkeyword where no > 0 order by no desc
+	]]>
+	</select>
+	
+		<insert id="insert">
+		insert into itkeyword (no,keyword,description,writer)
+		values (seq_keyno.nextval, #{keyword}, #{description})
+	</insert>
+
+	<insert id="insertSelectKey">
+
+		<selectKey keyProperty="no" order="BEFORE" resultType="long">
+			select seq_keyno.nextval from dual
+		</selectKey>
+
+		insert into itkeyword (no,keyword,description)
+		values (#{no},
+		#{keyword}, #{description})
+	</insert>
+	
+	<select id="read" resultType="com.application.domain.WordVO">
+		select * from itkeyword where no = #{no}
+	</select>
+	
+	<update id="update">
+		update itkeyword set keyword= #{keyword}, description=#{description} = #{writer} where no = #{no}
+	</update>
+	
+	<delete id="delete">
+		delete itkeyword where no = #{no}
+	</delete>
+	
+	<select id="getListWithPaging" resultType="com.application.domain.WordVO"> 
+    <![CDATA[
+    select no, keyword, description, regdate 
+    from ( 
+        select /*+index_desc(itkeyword pk_board) */
+        rownum rn, no, keyword, description, regdate 
+        from itkeyword 
+        where 
+    ]]>
+        <include refid="criteria"></include> <!-- criteria 조건 추가 -->
+    <![CDATA[
+    rownum <= #{pageNum} * #{amount} 
+    ) 
+    where rn > (#{pageNum}-1) * #{amount} 
+    ]]>
+</select>
+
+
+	
+	<select id="getTotalCount" resultType="int">
+		select count(*) from itkeyword where 
+		
+		<include refid="criteria"></include>
+		
+		no > 0
+		
+	</select>
+	
+	
+	
+</mapper>

@@ -8,23 +8,22 @@ import lombok.ToString;
 @Getter
 @Setter
 public class Criteria {
-	private int pageNum;
-	private int amount;
+	private int pageNum; //페이지번호
+	private int amount; //한페이지에 출력되는 글수
 	
-	private String type;
-	private String keyword;
-
+	private String type;  //검색필드
+	private String keyword;//검색억
+	
 	public Criteria() {
-		this(1,10);
+		this(1,10); // 기본값설정 - pageNum 1, amount 10
 	}
 	
 	public Criteria(int pageNum, int amount) {
-		this.pageNum = pageNum;
-		this.amount = amount;
+		this.pageNum=pageNum;
+		this.amount=amount;
 	}
-
 	public String[] getTypeArr() {
-		return type == null? new String[] {}: type.split("");
+	    // TCW 등을 한글자씩 분리
+	    return type == null? new String[] {}: type.split("");
 	  }
-
 }

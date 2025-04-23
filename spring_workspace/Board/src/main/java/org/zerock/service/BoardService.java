@@ -15,10 +15,11 @@ public interface BoardService {
 	//삭제
 	public boolean remove(Long bno);
 	//목록
-	//public List<BoardVO> getList();
+	public List<BoardVO> getList();
 	//목록 with paging
 	public List<BoardVO> getList(Criteria cri);
-	//전체 글 수
+	//전체글수
 	public int getTotal(Criteria cri);
+	
 	
 }

@@ -14,43 +14,49 @@ import lombok.Setter;
 @Service
 @AllArgsConstructor
 public class BoardServiceImpl implements BoardService{
-
+	//주입
 	@Setter(onMethod_ = @Autowired)
 	private BoardMapper mapper;
-	
+
 	@Override
 	public void register(BoardVO board) {
-		mapper.insertSelectKey(board); //mapper의 insert 메서드 호출
+		mapper.insertSelectKey(board); // mapper의 insert 메서드 호출		
 	}
 
 	@Override
 	public BoardVO get(Long bno) {
+		
 		return mapper.read(bno);
 	}
 
 	@Override
 	public boolean modify(BoardVO board) {
-		return mapper.update(board) == 1; //영향을 받은 행의 수가 1이면 true.
+		
+		return mapper.update(board)==1;//영향을 받은 행의 수가 1이면 true.
 	}
 
 	@Override
 	public boolean remove(Long bno) {
-		return mapper.delete(bno) == 1; //영향을 받은 행의 수가 1이면 true.
+		
+		return mapper.delete(bno)==1; //영향을 받은 행의 수가 1이면 true	
 	}
 
-	//@Override
-	//public List<BoardVO> getList() {
-	//	return mapper.getList();
-	//}
-	
+	@Override
+	public List<BoardVO> getList() {
+		
+		return mapper.getList();
+	}
+
 	@Override
 	public List<BoardVO> getList(Criteria cri) {
+		
 		return mapper.getListWithPaging(cri);
 	}
 
 	@Override
 	public int getTotal(Criteria cri) {
+		
 		return mapper.getTotalCount(cri);
 	}
-	
+
 }

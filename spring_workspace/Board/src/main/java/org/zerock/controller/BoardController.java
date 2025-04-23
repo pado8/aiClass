@@ -3,6 +3,7 @@ package org.zerock.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -17,25 +18,26 @@ import lombok.AllArgsConstructor;
 @RequestMapping("/board/*")
 @AllArgsConstructor
 public class BoardController {
-	//주입. 자동 주입
+	//주입. 자동주입. 생성자 의존성 주입	
 	private BoardService service;
-	
 	//등록화면
 	@GetMapping("/register")
 	public void register() {}
 	//목록
-	//@GetMapping("/list")
-	//public void list(Model model) {
-	//	model.addAttribute("list", service.getList());
-	//}
+//	@GetMapping("/list")
+//	public void list(Model model) {
+//		// request.setAttribute("list", service.getList()); 와 같은 역할
+//		model.addAttribute("list", service.getList());
+//	}
 	@GetMapping("/list")
 	public void list(Criteria cri, Model model) {
 		model.addAttribute("list", service.getList(cri));
 		
-		int total = service.getTotal(cri); // 전체 글 수
-		model.addAttribute("pageMaker", new PageDTO(cri, total)); //1.2.3.....10 페이지 번호 생성
-
+		int total=service.getTotal(cri); //전체글수
+		model.addAttribute("pageMaker", new PageDTO(cri,total)); //1.2.3...10 페이지번호생성
 	}
+	
+	
 	//등록
 	@PostMapping("/register")
 	public String register(BoardVO board, RedirectAttributes rttr) {
@@ -44,28 +46,35 @@ public class BoardController {
 		
 		return "redirect:/board/list";
 	}
-	
-	//상세보기
+	//상세보기.수정화면
 	@GetMapping({"/get","/modify"})
-	public void get(Long bno,Model model) {
+	public void get(Long bno,@ModelAttribute("cri") Criteria cri,Model model) {
 		model.addAttribute("board", service.get(bno));
 	}
 	//수정
-	 @PostMapping("/modify")
-	 public String modify(BoardVO board, RedirectAttributes rttr) {
-		 if (service.modify(board)) {
-			 rttr.addFlashAttribute("result", "success");
-		 }
-		 return "redirect:/board/list";
- 	}
-	//수정
-	 @PostMapping("/remove")
-	 public String remove(Long bno, RedirectAttributes rttr) {
-		 if (service.remove(bno)) {
-			 rttr.addFlashAttribute("result", "success");
-		 }
-		 return "redirect:/board/list";
- 	}
- 
+	@PostMapping("/modify")
+	public String modify(BoardVO board, Criteria cri, RedirectAttributes rttr) {
+		if(service.modify(board)) {
+			rttr.addFlashAttribute("result", "success");
+		}
+		rttr.addAttribute("pageNum", cri.getPageNum());
+		rttr.addAttribute("amount", cri.getAmount());
+		rttr.addAttribute("type", cri.getType());
+		rttr.addAttribute("keyword", cri.getKeyword());
+		
+		return "redirect:/board/list";
+	}
+	//삭제
+	@PostMapping("/remove")
+	public String remove(Long bno, Criteria cri, RedirectAttributes rttr) {
+		if(service.remove(bno)) {
+			rttr.addFlashAttribute("result", "success");
+		}
+		rttr.addAttribute("pageNum", cri.getPageNum());
+		rttr.addAttribute("amount", cri.getAmount());
+		rttr.addAttribute("type", cri.getType());
+		rttr.addAttribute("keyword", cri.getKeyword());
+		return "redirect:/board/list";
+	}
 	
 }
