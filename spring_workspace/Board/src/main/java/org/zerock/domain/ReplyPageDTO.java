@@ -8,6 +8,7 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class ReplyPageDTO {
-	private int replyCount; // 댓글 갯수
-	private List<ReplyVO> list; //댓글 목록
+	private int replyCnt; //댓글갯수
+	private List<ReplyVO> list; //댓글목록
+
 }

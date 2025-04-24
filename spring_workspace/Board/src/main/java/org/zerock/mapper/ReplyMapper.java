@@ -15,8 +15,9 @@ public interface ReplyMapper {
 	public int delete(Long rno);
 	//수정
 	public int update(ReplyVO reply);
-	//목록 with paging
-	public List<ReplyVO> getListWithPaging(@Param("cri") Criteria cri, @Param("bno") Long bno);
+	//목록 with paging 파라미터가 2개이상일땐 @Param
+	public List<ReplyVO> getListWithPaging(@Param("cri") Criteria cri,@Param("bno") Long bno);
 	//댓글수
 	public int getCountByBno(Long bno);
+	
 }
