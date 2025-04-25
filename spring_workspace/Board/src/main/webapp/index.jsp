@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<a href="/board/list">게시판</a>
+	<a href="/board/list">게시판</a><br/>
+	<a href="/uploadForm">업로드</a>
 </body>
 </html>
