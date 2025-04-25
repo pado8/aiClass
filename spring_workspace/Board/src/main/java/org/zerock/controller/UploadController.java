@@ -28,9 +28,29 @@ public class UploadController {
 				multipartFile.transferTo(saveFile);
 			} catch (Exception e) {
 				log.error(e.getMessage());
-			} // end catch
+			}
 
-		} // end for
+		}
+	}
+	
+	@GetMapping("/uploadAjax")
+	public void uploadAjax() {}
+	
+	@PostMapping("/uploadAjaxAction")
+	public void uploadAjaxPost(MultipartFile[] uploadFile){
+		String uploadFolder = "C:\\upload";
+		
+		for (MultipartFile multipartFile : uploadFile) {
+			log.info("Upload File Name: " + multipartFile.getOriginalFilename());
+			log.info("Upload File Size: " + multipartFile.getSize());
+			File saveFile = new File(uploadFolder, multipartFile.getOriginalFilename());
+			try {
+				multipartFile.transferTo(saveFile);
+			} catch (Exception e) {
+				log.error(e.getMessage());
+			}
+
+		}
 	}
 	
 }
