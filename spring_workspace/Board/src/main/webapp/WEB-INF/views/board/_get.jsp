@@ -113,57 +113,18 @@
 			    </div>
 			    <!-- /.modal-dialog -->
 			  </div>
-			  <!-- /.modal -->            
+			  <!-- /.modal -->
             
             
-      		<script>    	
-      			// 날짜형식을 지정하는 함수 --------------------------------------------------------------------------------
-	      		function displayTime(timeValue){
-	      			var today = new Date();
-	
-	      		    var gap = today.getTime() - timeValue;
-	      		
-	      		    var dateObj = new Date(timeValue);
-	      		    var str = "";
-	      		
-	      		    //댓글을 작성한지 24시간이 안됐으면 시:분:초 만 출력
-	      		    if (gap < 1000 * 60 * 60 * 24) {
-	      		      var hh = dateObj.getHours();
-	      		      var mi = dateObj.getMinutes();
-	      		      var ss = dateObj.getSeconds();
-	      		
-	      		      return [
-	      		        (hh > 9 ? "" : "0") + hh,
-	      		        ":",
-	      		        (mi > 9 ? "" : "0") + mi,
-	      		        ":",
-	      		        (ss > 9 ? "" : "0") + ss,
-	      		      ].join("");
-	      		    } else {
-	      		      var yy = dateObj.getFullYear();
-	      		      var mm = dateObj.getMonth() + 1; // getMonth() is zero-based
-	      		      var dd = dateObj.getDate();
-	      		
-	      		      return [
-	      		        yy,
-	      		        "/",
-	      		        (mm > 9 ? "" : "0") + mm,
-	      		        "/",
-	      		        (dd > 9 ? "" : "0") + dd,
-	      		      ].join("");
-	      		    }
-	      		}
-	      		
+            
+         	<script src="/resources/js/Reply.js"></script>
+            
+      		<script>    			
+      		
 	   			// 댓글목록을 출력하는 함수-------------------------------------------------------------------------
 	    		function showList(page,bnoValue){
-	    			var bno=bnoValue; //부모글번호
-	    			var pageNum=page || 1; //페이지번호
-	    			
-	    			$.getJSON("/replies/pages/"+bno+"/"+page+".json",function(data){
-	    				var replyCnt=data.replyCnt;
-	    				var list=data.list;
-	    				
-	    				//댓글등록시 마지막페이지로 이동
+	   				replyService.getList({bno:bnoValue,page:page||1},function(replyCnt,list){
+	   					//댓글등록시 마지막페이지로 이동
 	   					if(page==-1){
 	   						pageNum=Math.ceil(replyCnt/10.0);
 	   						showList(pageNum,bnoValue);
@@ -178,16 +139,15 @@
 	   					for(var i=0,len=list.length || 0; i<len; i++ ){
 	   						str+="<li class='left clearfix' data-rno='"+list[i].rno+"'>";
 	   						str+="	<div><div class='header'><strong class='primary-font'>["+list[i].rno+"]"+list[i].replyer+"</strong>";
-	   						str+="		<small class='pull-right text-muted'>"+displayTime(list[i].replyDate)+"</small></div>";
+	   						str+="		<small class='pull-right text-muted'>"+replyService.displayTime(list[i].replyDate)+"</small></div>";
 	   						str+="		 <p>"+list[i].reply+"</p></div></li>";
 	   					}
 	   					//<li>태그를 ul태그에 넣기
 	   					$(".chat").html(str);
 	   					//페이지번호생성
 	   					showReplyPage(replyCnt,page);
-	    			});
-	    			
-	   				
+	   					
+	   				});
 	   			} 		   			
    			
   				//페이지번호를 생성하는 함수--------------------------------------------------------------------------------------
@@ -275,31 +235,23 @@
       							replyer: modalInputReplyer.val(),
       							bno:bnoValue
       					};
-      					
-      					$.ajax({
-      						type:"post", //전송방식
-      						url:"/replies/new", //서버주소
-      						data:JSON.stringify(reply), //서버로 전달되는 데이터
-      						contentType:"application/json; charset=utf-8", //서버에서 넘어오는 데이터의 형식
-      						success:function(result,status,xhr){ // sucess일 때 호출되는 함수				
-      							alert(result); // 'success' 알림창 출력
-          						modal.find("input").val(""); // input 태그 초기화
-          						modal.modal("hide"); // modal창 안보이게
-          						
-          						showList(-1,bnoValue); // 마지막페이지로 이동. 등록된 글을 보기 위해서
-      						}     						
-      					}); 
+      					// Reply.js의 add함수 호출
+      					replyService.add(reply,function(result){
+      						alert(result); // 'success' 알림창 출력
+      						modal.find("input").val(""); // input 태그 초기화
+      						modal.modal("hide"); // modal창 안보이게
+      						
+      						showList(-1,bnoValue); // 마지막페이지로 이동. 등록된 글을 보기 위해서
+      					});
       				});   	
       				//댓글목록에서 댓글 클릭시 상세보기
       				//delegate. 위임
       				replyUL.on("click","li",function(){
       					var rno=$(this).data("rno"); // data-rno 사용자 속성값 읽기
-      					
-      					// $.get()은 get방식 처리 전용 함수
-      					$.get("/replies/"+rno+".json",function(reply){
+      					replyService.get(rno,function(reply){
       						modalInputReply.val(reply.reply);
       						modalInputReplyer.val(reply.replyer);
-      						modalInputReplyDate.val(displayTime(reply.replyDate)).attr("readonly","readonly");
+      						modalInputReplyDate.val(replyService.displayTime(reply.replyDate)).attr("readonly","readonly");
       						modal.data("rno", reply.rno); // data-rno가 만들어짐
       						
       						modal.find("button[id!='modalCloseBtn']").hide();// close만 빼고 나머지 버튼을 안보이게 하기
@@ -307,46 +259,27 @@
       						modalRemoveBtn.show();
       						
       						$(modal).modal("show");
-      					}); 				
+      					});      					
       				});
       				//모달창에서 수정버튼 클릭시 이벤트 처리
       				modalModBtn.on("click",function(){
       					//서버로 전송할 데이터
       					var reply={rno:modal.data("rno"),reply:modalInputReply.val()};
-      					$.ajax({
-      						type:"put", //전송방식
-      						url: "/replies/"+reply.rno, //서버주소
-      						data:JSON.stringify(reply), // 서버에 전달할 데이터
-      						contentType:"application/json; charset=utf-8", // 서버에서 넘어오는 데이터의 타입
-      						success:function(result,status,xhr){ // 성공일때 호출하는 함수
-      							alert(result);
-      							modal.modal("hide");
-      							showList(pageNum,bnoValue);
-      						}
-      					});
-      					
       					replyService.update(reply,function(result){
       							alert(result);
       							modal.modal("hide");
       							showList(pageNum,bnoValue);
-      					});      					
+      						});      					
       				});
       				//모달창에서 삭제버튼 클릭시 이벤트 처리
       				modalRemoveBtn.on("click",function(){
       					//댓글번호
       					var rno=modal.data("rno");
-      					
-      					$.ajax({
-      						type:"delete", // 전송방식
-      						url:"/replies/"+rno, // 서버주소
-      						success:function(deleteResult,status,xhr){ //성공했을 때 호출하는 함수
-      							alert(deleteResult);
-          						modal.modal("hide");
-          						showList(pageNum,bnoValue);
-      						}
+      					replyService.remove(rno,function(result){
+      						alert(result);
+      						modal.modal("hide");
+      						showList(pageNum,bnoValue);
       					});
-      					
-      					
       				});      				
       				
       				// 부모글 수정버튼 이벤트 처리

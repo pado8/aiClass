@@ -26,7 +26,7 @@ public class ReplyServiceImpl implements ReplyService{
 	@Transactional
 	@Override
 	public int register(ReplyVO vo) {
-		boardMapper.updateReplyCnt(vo.getBno(), 1); //댓글갯수 1증가
+		boardMapper.updateReplyCnt(vo.getBno(), 1); //댓글갯수 1 증가
 		
 		return mapper.insert(vo);
 	}
@@ -46,9 +46,9 @@ public class ReplyServiceImpl implements ReplyService{
 	@Transactional
 	@Override
 	public int remove(Long rno) {
-		//vo를 만들어서 bno 추출
+		//vo를 만들어서 bno추출 해서 처리
 		ReplyVO vo=mapper.read(rno);
-		boardMapper.updateReplyCnt(vo.getBno(), -1);
+		boardMapper.updateReplyCnt(vo.getBno(), -1); // 댓글갯수 -1
 		
 		return mapper.delete(rno);
 	}

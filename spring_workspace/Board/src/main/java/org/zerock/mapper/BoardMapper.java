@@ -28,6 +28,7 @@ public interface BoardMapper {
 	public int delete(Long bno); //리턴값은 영향을 받은 행의 수
 	//전체글수
 	public int getTotalCount(Criteria cri); 
-	
+	//댓글수 업데이트
 	public void updateReplyCnt(@Param("bno") Long bno, @Param("amount") int amount);
+	
 }

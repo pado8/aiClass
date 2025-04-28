@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.zerock.domain.BoardVO;
 import org.zerock.domain.Criteria;
+import org.zerock.mapper.BoardAttachMapper;
 import org.zerock.mapper.BoardMapper;
 
 import lombok.AllArgsConstructor;
@@ -18,9 +19,22 @@ public class BoardServiceImpl implements BoardService{
 	@Setter(onMethod_ = @Autowired)
 	private BoardMapper mapper;
 
+	@Setter(onMethod_ = @Autowired)
+	private BoardAttachMapper attachMapper;
+	
 	@Override
 	public void register(BoardVO board) {
-		mapper.insertSelectKey(board); // mapper의 insert 메서드 호출		
+		mapper.insertSelectKey(board); // mapper의 insert 메서드 호출	
+		
+		if (board.getAttachList() == null || board.getAttachList().size() <= 0) {
+			return;
+		}
+
+		board.getAttachList().forEach(attach -> {
+
+			attach.setBno(board.getBno());
+			attachMapper.insert(attach);
+		});
 	}
 
 	@Override

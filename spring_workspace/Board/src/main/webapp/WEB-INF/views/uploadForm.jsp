@@ -9,8 +9,8 @@
 <body>
 	<h1>servlet을 이용한 파일업로드 테스트</h1>
 	<form action="uploadFormAction" method="post" enctype="multipart/form-data">
-		<input type='file' name='uploadFile' multiple>
-		<button>Submit</button>
+		<input type="file" name="uploadFile" multiple>
+		<button>submit</button>
 	</form>
 </body>
 </html>

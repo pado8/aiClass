@@ -1,59 +1,122 @@
-var replyService=(function(){
-	function add(reply, callback, error){
-		$.ajax({
-			type:"post", //전송방식
-			url:"/replies/new", //서버주소
-			data:JSON.stringify(reply), //서버로 전달되는 데이터
-			contentType:"application/json; charset=utf-8", //서버에서 넘어오는 데이터의 형식
-			success:function(result,status,xhr){ // sucess일 때 호출되는 함수				
-				if(callback){					
-					callback(result);
-				}
-			},
-			error:function(xhr,status,er){ // error일 때 호출되는 함수. 책에서 사용 안함.
-				if(error){
-					error(er);
-				}
-			}
-			
-		});
-	}
-	
-	function getList(param, callback, error) {
+console.log("Reply Module........");
 
-	    var bno = param.bno; // 부모글번호
-	    var page = param.page || 1; //페이지번호
-	    
-	    $.getJSON("/replies/pages/" + bno + "/" + page + ".json", function(data) {
-			// callback함수가 있으면 callback 함수 호출
-	          if (callback) {
-	            callback(data.replyCnt, data.list);
-	          }
-	        }).fail(function(xhr, status, err) {
-				// error 함수가 있으면 error 함수 호출
-	      if (error) {
-	        error();
-	      }
-	    });
-	  }
-	
-	function remove(){}
-	
-	function update(){}
-	
-	function get(){}
-	
-	function displayTime(){}
+//즉시실행함수. 익명함수정의와 동시에 실행.
+var replyService = {
+    add:function (reply, callback, error) {
+      console.log("add reply...............");
 
-	return {
-		add:add,
-		getList:getList,
-		remove:remove,
-		update:update,
-		get:get,
-		displayTime:displayTime	
-		
-		
-	};
+    $.ajax({
+      type: "post",
+      url: "/replies/new",
+      data: JSON.stringify(reply),
+      contentType: "application/json; charset=utf-8",
+      success: function (result, status, xhr) {
+        if (callback) {
+          callback(result);
+        }
+      },
+      error: function (xhr, status, er) {
+        if (error) {
+          error(er);
+        }
+      },
+    });
+    },  
+    getList:function (param, callback, error) {
+    var bno = param.bno;
+    var page = param.page || 1;
 
-})();
+    $.getJSON("/replies/pages/" + bno + "/" + page + ".json", function (data) {
+      if (callback) {
+        //callback(data); // 댓글 목록만 가져오는 경우
+        callback(data.replyCnt, data.list); //댓글 숫자와 목록을 가져오는 경우
+      }
+    }).fail(function (xhr, status, err) {
+      if (error) {
+        error();
+      }
+    });
+    },
+    remove:function (rno, callback, error) {
+    $.ajax({
+      type: "delete",
+      url: "/replies/" + rno,
+      success: function (deleteResult, status, xhr) {
+        if (callback) {
+          callback(deleteResult);
+        }
+      },
+      error: function (xhr, status, er) {
+        if (error) {
+          error(er);
+        }
+      },
+    });
+    },
+    update:function (reply, callback, error) {
+    console.log("RNO: " + reply.rno);
+
+    $.ajax({
+      type: "put",
+      url: "/replies/" + reply.rno,
+      data: JSON.stringify(reply),
+      contentType: "application/json; charset=utf-8",
+      success: function (result, status, xhr) {
+        if (callback) {
+          callback(result);
+        }
+      },
+      error: function (xhr, status, er) {
+        if (error) {
+          error(er);
+        }
+      },
+    });
+    },
+    get:function (rno, callback, error) {
+    $.get("/replies/" + rno + ".json", function (result) {
+      if (callback) {
+        callback(result);
+      }
+    }).fail(function (xhr, status, err) {
+      if (error) {
+        error();
+      }
+    });
+     },
+    displayTime:function (timeValue) {
+    var today = new Date();
+
+    var gap = today.getTime() - timeValue;
+
+    var dateObj = new Date(timeValue);
+    var str = "";
+
+    //댓글을 작성한지 24시간이 안됐으면 시:분:초 만 출력
+    if (gap < 1000 * 60 * 60 * 24) {
+      var hh = dateObj.getHours();
+      var mi = dateObj.getMinutes();
+      var ss = dateObj.getSeconds();
+
+      return [
+        (hh > 9 ? "" : "0") + hh,
+        ":",
+        (mi > 9 ? "" : "0") + mi,
+        ":",
+        (ss > 9 ? "" : "0") + ss,
+      ].join("");
+    } else {
+      var yy = dateObj.getFullYear();
+      var mm = dateObj.getMonth() + 1; // getMonth() is zero-based
+      var dd = dateObj.getDate();
+
+      return [
+        yy,
+        "/",
+        (mm > 9 ? "" : "0") + mm,
+        "/",
+        (dd > 9 ? "" : "0") + dd,
+      ].join("");
+    }
+  }  
+};
