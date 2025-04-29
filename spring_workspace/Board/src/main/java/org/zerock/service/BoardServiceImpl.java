@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.zerock.domain.BoardAttachVO;
 import org.zerock.domain.BoardVO;
 import org.zerock.domain.Criteria;
 import org.zerock.mapper.BoardAttachMapper;
@@ -49,8 +51,11 @@ public class BoardServiceImpl implements BoardService{
 		return mapper.update(board)==1;//영향을 받은 행의 수가 1이면 true.
 	}
 
+	@Transactional
 	@Override
 	public boolean remove(Long bno) {
+		
+		attachMapper.deleteAll(bno);
 		
 		return mapper.delete(bno)==1; //영향을 받은 행의 수가 1이면 true	
 	}
@@ -72,5 +77,12 @@ public class BoardServiceImpl implements BoardService{
 		
 		return mapper.getTotalCount(cri);
 	}
+
+	@Override
+	public List<BoardAttachVO> getAttachList(Long bno) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 
 }
