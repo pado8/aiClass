@@ -195,13 +195,16 @@ public class UploadController {
 	@PostMapping("/deleteFile")
 	@ResponseBody
 	public ResponseEntity<String> deleteFile(String fileName,String type){
+		log.info("**************************************");
+		log.info(type);
+		log.info("**************************************");
 		File file;
 		try {
 			//썸네일 or 일반파일
 			file=new File("c:\\upload\\"+URLDecoder.decode(fileName,"UTF-8"));
 			file.delete();//파일삭제
 			if(type.equals("image")) { // 이미지이면 원본파일도 삭제
-				String largeFileName=file.getAbsolutePath().replace("_s","");
+				String largeFileName=file.getAbsolutePath().replace("s_","");
 				file=new File(largeFileName);
 				file.delete();//파일삭제				
 			}

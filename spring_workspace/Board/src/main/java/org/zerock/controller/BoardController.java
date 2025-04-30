@@ -1,5 +1,8 @@
 package org.zerock.controller;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -74,20 +77,50 @@ public class BoardController {
 	//삭제
 	@PostMapping("/remove")
 	public String remove(Long bno, Criteria cri, RedirectAttributes rttr) {
+		//첨부파일목록
+		List<BoardAttachVO> attachList=service.getAttachList(bno);		
+				
 		if(service.remove(bno)) {
+			//첨부파일삭제
+			deleteFiles(attachList);
+			
 			rttr.addFlashAttribute("result", "success");
 		}
-		rttr.addAttribute("pageNum", cri.getPageNum());
-		rttr.addAttribute("amount", cri.getAmount());
-		rttr.addAttribute("type", cri.getType());
-		rttr.addAttribute("keyword", cri.getKeyword());
-		return "redirect:/board/list";
+//		rttr.addAttribute("pageNum", cri.getPageNum());
+//		rttr.addAttribute("amount", cri.getAmount());
+//		rttr.addAttribute("type", cri.getType());
+//		rttr.addAttribute("keyword", cri.getKeyword());
+		return "redirect:/board/list"+cri.getListLink();
 	}
-	//첨부파일 목록
-	@GetMapping(value = "/getAttachList", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	
+	//첨부파일삭제
+	private void deleteFiles(List<BoardAttachVO> attachList) {
+		//첨부파일이 없으면 종료
+		if(attachList==null || attachList.size()==0) {
+			return;
+		}
+		attachList.forEach(attach->{
+			try {
+				Path file=Paths.get("C:\\upload\\"+attach.getUploadPath()+"\\"+attach.getUuid()+"_"+attach.getFileName());
+				Files.deleteIfExists(file); //파일삭제
+				
+				//이미지파일이면 썸네일도 삭제
+				if(Files.probeContentType(file).startsWith("image")) {
+					Path thumbNail=Paths.get("C:\\upload\\"+attach.getUploadPath()+"\\s_"+attach.getUuid()+"_"+attach.getFileName());
+					Files.delete(thumbNail);//파일삭제
+				}
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		});
+	}
+	
+	
+	//첨부파일목록
+	@GetMapping(value="/getAttachList",produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseBody
-	public ResponseEntity<List<BoardAttachVO>> getAttachList(Long bno) {
-		return new ResponseEntity<>(service.getAttachList(bno), HttpStatus.OK);
+	public ResponseEntity<List<BoardAttachVO>> getAttachList(Long bno){
+		return new ResponseEntity<>(service.getAttachList(bno),HttpStatus.OK);
 	}
 	
 }

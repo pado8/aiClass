@@ -15,5 +15,5 @@ public class BoardVO {
 	private Date updateDate;
 	private int replyCnt;
 	
-	private List<BoardAttachVO> attachList;
+	private List<BoardAttachVO> attachList; //첨부파일목록
 }

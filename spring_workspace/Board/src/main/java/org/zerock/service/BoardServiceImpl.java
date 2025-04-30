@@ -13,27 +13,33 @@ import org.zerock.mapper.BoardMapper;
 
 import lombok.AllArgsConstructor;
 import lombok.Setter;
+import lombok.extern.log4j.Log4j;
 
 @Service
 @AllArgsConstructor
+@Log4j
 public class BoardServiceImpl implements BoardService{
 	//주입
 	@Setter(onMethod_ = @Autowired)
 	private BoardMapper mapper;
-
+	//주입
 	@Setter(onMethod_ = @Autowired)
 	private BoardAttachMapper attachMapper;
-	
+
+	@Transactional
 	@Override
+	
 	public void register(BoardVO board) {
 		mapper.insertSelectKey(board); // mapper의 insert 메서드 호출	
-		
-		if (board.getAttachList() == null || board.getAttachList().size() <= 0) {
+		//첨부파일이 없으면 중지
+		if(board.getAttachList()==null || board.getAttachList().size()<=0) {
 			return;
 		}
-
-		board.getAttachList().forEach(attach -> {
-
+		//첨부파일목록에서 하나씩 처리
+		board.getAttachList().forEach(attach->{
+			log.info("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+			log.info(attach.getFileName());
+			log.info("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 			attach.setBno(board.getBno());
 			attachMapper.insert(attach);
 		});
@@ -45,16 +51,29 @@ public class BoardServiceImpl implements BoardService{
 		return mapper.read(bno);
 	}
 
+	@Transactional
 	@Override
 	public boolean modify(BoardVO board) {
+		//첨부파일목록을 일단 모두 삭제
+		attachMapper.deleteAll(board.getBno());
+		//부모글 수정
+		boolean modifyResult=mapper.update(board)==1;//영향을 받은 행의 수가 1이면 true.
+		//부모글수정이 성공하고 첨부파일목록이 있으면 첨부파일 등록
+		if(modifyResult && board.getAttachList().size()>0) {
+			board.getAttachList().forEach(attach->{
+				attach.setBno(board.getBno());
+				attachMapper.insert(attach);
+			});
+		}
 		
-		return mapper.update(board)==1;//영향을 받은 행의 수가 1이면 true.
+		return modifyResult;
 	}
 
 	@Transactional
 	@Override
 	public boolean remove(Long bno) {
 		
+		//첨부파일목록삭제
 		attachMapper.deleteAll(bno);
 		
 		return mapper.delete(bno)==1; //영향을 받은 행의 수가 1이면 true	
@@ -79,10 +98,8 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public List<BoardAttachVO> getAttachList(Long bno) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<BoardAttachVO> getAttachList(Long bno) {		
+		return attachMapper.findByBno(bno);
 	}
-	
 
 }

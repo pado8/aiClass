@@ -11,9 +11,7 @@ public interface BoardAttachMapper {
 	public List<BoardAttachVO> findByBno(Long bno);
 	//첨부파일목록삭제 by bno
 	public void deleteAll(Long bno);
-
-	public void delete(String uuid);
-
+	//어제날짜 첨부파일 목록
 	public List<BoardAttachVO> getOldFiles();
-
+	
 }
