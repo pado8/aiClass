@@ -7,15 +7,16 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
-@Builder
+@Builder //builder pattern사용
 @AllArgsConstructor
 @Data
 public class PageRequestDTO {
 
-    private int page;
-    private int size;
-    private String type;
-    private String keyword;
+    private int page; //페이지번호
+    private int size; //한페이지에 출력되는 글의 수
+    private String type; // 검색 field
+    private String keyword; // 검색어
+
 
     public PageRequestDTO(){
         this.page = 1;
@@ -24,5 +25,6 @@ public class PageRequestDTO {
 
     public Pageable getPageable(Sort sort){
         return PageRequest.of(page -1, size, sort);
+
     }
 }

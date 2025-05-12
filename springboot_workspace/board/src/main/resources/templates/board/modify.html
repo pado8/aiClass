@@ -9,11 +9,10 @@
 
         <form action="/board/modify" method="post">
 
-            <!--페이지 번호  -->
+            <!--페이지 번호. 검색필드, 검색어  ----------------------------------------->
             <input type="hidden" name="page" th:value="${requestDTO.page}">
             <input type="hidden" name="type" th:value="${requestDTO.type}" >
             <input type="hidden" name="keyword" th:value="${requestDTO.keyword}" >
-
 
             <div class="form-group">
                 <label >Bno</label>
@@ -21,16 +20,16 @@
             </div>
 
             <div class="form-group">
-                <label>Title</label>
-                <input type="text" class="form-control" name="title" th:value="${dto.title}" >
+                <label >Title</label>
+                <input type="text" class="form-control" name="title" th:value="${dto.title}">
             </div>
             <div class="form-group">
                 <label >Content</label>
                 <textarea class="form-control" rows="5" name="content">[[${dto.content}]]</textarea>
             </div>
             <div class="form-group">
-                <label >Writer</label>
-                <input type="text" class="form-control" name="writer" th:value="${dto.writerEmail}" readonly>
+                <label >Writer Email</label>
+                <input type="email" class="form-control" name="writer"  th:value="${dto.writerName}" readonly>
             </div>
             <div class="form-group">
                 <label >RegDate</label>
@@ -40,20 +39,19 @@
                 <label >ModDate</label>
                 <input type="text" class="form-control" th:value="${#temporals.format(dto.modDate, 'yyyy/MM/dd HH:mm:ss')}" readonly>
             </div>
-
         </form>
 
         <button type="button" class="btn btn-primary modifyBtn">Modify</button>
-
         <button type="button" class="btn btn-info listBtn">List</button>
-
         <button type="button" class="btn btn-danger removeBtn">Remove</button>
 
         <script th:inline="javascript">
-
-            var actionForm = $("form"); //form 태그 객체
+            var actionForm = $("form"); //form 태그 찾아놓기
 
             $(".removeBtn").click(function(){
+                if(!confirm("삭제하시겠습니까?")){
+                    return ;
+                }
 
                 actionForm
                     .attr("action", "/board/remove")
@@ -64,7 +62,6 @@
             });
 
             $(".modifyBtn").click(function() {
-
                 if(!confirm("수정하시겠습니까?")){
                     return ;
                 }
@@ -76,7 +73,6 @@
             });
 
             $(".listBtn").click(function() {
-
                 //var pageInfo = $("input[name='page']");
                 var page = $("input[name='page']");
                 var type = $("input[name='type']");

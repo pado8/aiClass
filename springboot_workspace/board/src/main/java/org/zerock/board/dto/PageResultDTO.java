@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 @Data
-public class PageResultDTO<DTO, EN> {
+public class PageResultDTO<DTO,EN> {
     //DTO리스트
     private List<DTO> dtoList;
     //총 페이지 번호
@@ -25,11 +25,14 @@ public class PageResultDTO<DTO, EN> {
     private boolean prev, next;
     //페이지 번호  목록
     private List<Integer> pageList;
+
+    // fn은 함수를 호출하기위한 reference
     public PageResultDTO(Page<EN> result, Function<EN,DTO> fn ){
         dtoList = result.stream().map(fn).collect(Collectors.toList());
         totalPage = result.getTotalPages();
         makePageList(result.getPageable());
     }
+
 
     private void makePageList(Pageable pageable){
         this.page = pageable.getPageNumber() + 1; // 0부터 시작하므로 1을 추가
@@ -42,6 +45,6 @@ public class PageResultDTO<DTO, EN> {
         end = totalPage > tempEnd ? tempEnd: totalPage;
         next = totalPage > tempEnd;
         pageList = IntStream.rangeClosed(start, end).boxed().collect(Collectors.toList());
-    }
 
+    }
 }

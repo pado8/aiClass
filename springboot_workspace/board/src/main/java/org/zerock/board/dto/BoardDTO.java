@@ -1,12 +1,11 @@
 package org.zerock.board.dto;
 
 import lombok.*;
-
 import java.time.LocalDateTime;
 
 @Data
 @ToString
-@Builder
+@Builder // builder pattern사용
 @AllArgsConstructor
 @NoArgsConstructor
 public class BoardDTO {
@@ -17,5 +16,6 @@ public class BoardDTO {
     private String writerName; //작성자의 이름
     private LocalDateTime regDate;
     private LocalDateTime modDate;
+
     private int replyCount; //해당 게시글의 댓글 수
 }
