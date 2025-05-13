@@ -17,12 +17,13 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class ReviewServiceImpl implements ReviewService {
 
-    private final ReviewRepository reviewRepository;
+    private final ReviewRepository reviewRepository; //자동주입. final필요
 
     @Override
     public List<ReviewDTO> getListOfMovie(Long mno){
         Movie movie = Movie.builder().mno(mno).build();
         List<Review> result = reviewRepository.findByMovie(movie);
+        
         return result.stream().map(movieReview -> entityToDto(movieReview)).collect(Collectors.toList());
     }
 
@@ -30,23 +31,28 @@ public class ReviewServiceImpl implements ReviewService {
     public Long register(ReviewDTO movieReviewDTO) {
         Review movieReview = dtoToEntity(movieReviewDTO);
         reviewRepository.save(movieReview);
+
         return movieReview.getReviewnum();
     }
 
     @Override
     public void modify(ReviewDTO movieReviewDTO) {
-        Optional<Review> result =
-                reviewRepository.findById(movieReviewDTO.getReviewnum());
+
+        Optional<Review> result =  reviewRepository.findById(movieReviewDTO.getReviewnum());
+
         if(result.isPresent()){
             Review movieReview = result.get();
             movieReview.changeGrade(movieReviewDTO.getGrade());
             movieReview.changeText(movieReviewDTO.getText());
+
             reviewRepository.save(movieReview);
         }
+
     }
 
     @Override
     public void remove(Long reviewnum) {
         reviewRepository.deleteById(reviewnum);
+
     }
 }

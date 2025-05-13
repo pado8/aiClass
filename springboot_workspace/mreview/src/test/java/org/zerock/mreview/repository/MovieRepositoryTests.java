@@ -31,18 +31,25 @@ public class MovieRepositoryTests {
     public void insertMovies() {
 
         IntStream.rangeClosed(1,100).forEach(i -> {
+
             Movie movie = Movie.builder().title("Movie...." +i).build();
+
             System.out.println("------------------------------------------");
+
             movieRepository.save(movie);
+
             int count = (int)(Math.random() * 5) + 1; //1,2,3,4
+
 
             for(int j = 0; j < count; j++){
                 MovieImage movieImage = MovieImage.builder()
                         .uuid(UUID.randomUUID().toString())
                         .movie(movie)
                         .imgName("test"+j+".jpg").build();
+
                 imageRepository.save(movieImage);
             }
+
 
             System.out.println("===========================================");
 
@@ -51,8 +58,11 @@ public class MovieRepositoryTests {
 
     @Test
     public void testListPage(){
+
         PageRequest pageRequest = PageRequest.of(10,10, Sort.by(Sort.Direction.DESC, "mno"));
+
         Page<Object[]> result = movieRepository.getListPage(pageRequest);
+
         for (Object[] objects : result.getContent()) {
             System.out.println(Arrays.toString(objects));
         }
@@ -60,8 +70,11 @@ public class MovieRepositoryTests {
 
     @Test
     public void testGetMovieWithAll() {
+
         List<Object[]> result = movieRepository.getMovieWithAll(92L);
+
         System.out.println(result);
+
         for (Object[] arr : result) {
             System.out.println(Arrays.toString(arr));
         }

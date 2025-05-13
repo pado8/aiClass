@@ -14,21 +14,21 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class ReviewDTO {
 
-    //review num
+    //review 번호
     private Long reviewnum;
-    //Movie mno
+    //Movie 번호
     private Long mno;
     //Membmer id
     private Long mid;
     //Member nickname
     private String nickname;
-    //Member email
+    //Member 이메일
     private String email;
-    // 평점
+    //평점. 1~5
     private int grade;
-    // 리뷰 내용
+    //리뷰내용
     private String text;
-    // 리뷰 날짜
+    //등록일.수정일
     private LocalDateTime regDate, modDate;
 
 

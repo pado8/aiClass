@@ -21,45 +21,32 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MovieController {
 
-    private final MovieService movieService; //final
+    private final MovieService movieService; //자동주입.final필요
 
+    //등록화면
     @GetMapping("/register")
-    public void register(){
-
-    }
-
+    public void register(){}
+    //등록처리
     @PostMapping("/register")
     public String register(MovieDTO movieDTO, RedirectAttributes redirectAttributes){
-        log.info("movieDTO: " + movieDTO);
-
         Long mno = movieService.register(movieDTO);
 
         redirectAttributes.addFlashAttribute("msg", mno);
 
         return "redirect:/movie/list";
     }
-
+    //목록
     @GetMapping("/list")
     public void list(PageRequestDTO pageRequestDTO, Model model){
-
-        log.info("pageRequestDTO: " + pageRequestDTO);
-
-
         model.addAttribute("result", movieService.getList(pageRequestDTO));
-
     }
-
+    //상세보기.수정화면
     @GetMapping({"/read", "/modify"})
     public void read(long mno, @ModelAttribute("requestDTO") PageRequestDTO requestDTO, Model model ){
-
-        log.info("mno: " + mno);
-
         MovieDTO movieDTO = movieService.getMovie(mno);
 
         model.addAttribute("dto", movieDTO);
-
     }
 
-    //삭제없음
 
 }

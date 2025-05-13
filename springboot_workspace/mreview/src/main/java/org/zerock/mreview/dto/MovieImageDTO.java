@@ -14,11 +14,8 @@ import java.net.URLEncoder;
 @NoArgsConstructor
 @Builder
 public class MovieImageDTO {
-
     private String uuid;
-
     private String imgName;
-
     private String path;
 
     public String getImageURL(){
@@ -29,6 +26,7 @@ public class MovieImageDTO {
         }
         return "";
     }
+    
     public String getThumbnailURL(){
         try {
             return URLEncoder.encode(path+"/s_"+uuid+"_"+imgName,"UTF-8");

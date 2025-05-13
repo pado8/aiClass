@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
+
 <th:block th:fragment="setContent(content)">
-    <head>
+
 
 <head>
 
@@ -13,18 +14,13 @@
 
     <title>Simple Sidebar - Start Bootstrap Template</title>
 
-    <title>Simple Sidebar - Start Bootstrap Template</title>
-
     <!-- Bootstrap core CSS -->
     <link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
-
     <!-- Custom styles for this template -->
     <link th:href="@{/css/simple-sidebar.css}" rel="stylesheet">
-
     <!-- Bootstrap core JavaScript -->
     <script th:src="@{/vendor/jquery/jquery.min.js}"></script>
     <script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
-
 </head>
 
 <body>
@@ -83,7 +79,6 @@
             <th:block th:replace = "${content}"></th:block>
 
         </div>
-
     </div>
     <!-- /#page-content-wrapper -->
 
@@ -92,15 +87,16 @@
 
 
 
-
 <!-- Menu Toggle Script -->
 <script>
     $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
+      e.preventDefault();
+      $("#wrapper").toggleClass("toggled");
     });
 </script>
 
 </body>
+
 </th:block>
+
 </html>

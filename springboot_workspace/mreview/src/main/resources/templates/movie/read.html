@@ -1,26 +1,19 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-
-<th:block th:replace="~{/layout/basic :: setContent(~{this::content} )}">
-
+<th:block th:replace="~{layout/basic :: setContent(~{this::content})}">
     <th:block th:fragment="content">
-
-        <h1 class="mt-4">Movie Read Page</h1>
-
-
+        <h1>Read</h1>
         <div class="form-group">
-            <label >Title</label>
-            <input type="text" class="form-control" name="title" th:value="${dto.title}" readonly>
+            <label>Title</label>
+            <input class="form-control" name="title" th:value="${dto.title}" readonly>
         </div>
-
         <div class="form-group">
-            <label >Review Count </label>
-            <input type="text" class="form-control" name="title" th:value="${dto.reviewCnt}" readonly>
+            <label>Review Count</label>
+            <input class="form-control" name="reviewCnt" th:value="${dto.reviewCnt}" readonly>
         </div>
-
         <div class="form-group">
-            <label >Avg </label>
-            <input type="text" class="form-control" name="title" th:value="${dto.avg}" readonly>
+            <label>Avg</label>
+            <input class="form-control" name="avg" th:value="${dto.avg}" readonly>
         </div>
 
         <style>
@@ -49,32 +42,26 @@
                 width: 100px;
             }
         </style>
-
-
-
+        <!-- 업로드된 이미지 목록 -------------------------------------------------------->
         <div class="uploadResult">
-            <ul >
-                <li th:each="movieImage: ${dto.imageDTOList}" th:data-file="${movieImage.getThumbnailURL()}">
-                    <img  th:if="${movieImage.path != null}" th:src="|/display?fileName=${movieImage.getThumbnailURL()}|">
+            <ul>
+                <li th:each="movieImage:${dto.imageDTOList}" th:data-file="${movieImage.getThumbnailURL()}">
+                    <img th:if="${movieImage.path!=null}" th:src="|/display?fileName=${movieImage.getThumbnailURL()}|">
                 </li>
             </ul>
         </div>
-
-
-
+        <!-- 업로드된 이미지 목록.end -->
         <button type="button" class="btn btn-primary">
             Review Count <span class="badge badge-light">[[${dto.reviewCnt}]]</span>
         </button>
-
-        <button type="button" class="btn btn-info addReviewBtn">
-            Review Register
-        </button>
-
+        <button type="button" class="btn btn-info addReviewBtn">Review Register</button>
+        <!-- 리뷰목록 -------------------------------------------------------------------------------------------------->
         <div class="list-group reviewList">
 
         </div>
+        <!-- 리뷰목록.end -->
 
-
+        <!-- 리뷰모달창 ------------------------------------------------------------------------------------------------->
         <div class="reviewModal modal" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -90,7 +77,7 @@
                             <label >Reviewer ID</label>
                             <input type="text" class="form-control" name="mid" >
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" id="divGrade">
                             <label >Grade <span class="grade"></span></label>
                             <div class='starrr'></div>
                         </div>
@@ -108,7 +95,9 @@
                 </div>
             </div>
         </div>
+        <!-- 리뷰모달창.end -->
 
+        <!-- 원본이미지모달창 -------------------------------------------------------------------------------------->
         <div class="imageModal modal " tabindex="-2" role="dialog">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
@@ -128,13 +117,12 @@
                 </div>
             </div>
         </div>
-
-
+        <!-- 원본이미지모달창.end -->
         <script th:src="@{/starrr.js}"></script>
         <link th:href="@{/css/starrr.css}" rel="stylesheet">
         <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
 
-        <script>
+        <script th:inline="javascript">
             $(document).ready(function(e) {
 
                 var grade = 0;
@@ -158,8 +146,23 @@
 
 
                 $(".addReviewBtn").click(function () {
+                    grade=0;
                     inputMid.val("");
                     inputText.val("");
+
+                    //.starrr초기화
+                    var star=$(".starrr").clone();
+                    $(".starrr").remove();
+                    $("#divGrade").append(star);
+                    $('.starrr').starrr({
+                         rating: grade,
+                         change: function(e, value){
+                             if (value) {
+                                 console.log(value);
+                                 grade = value;
+                             }
+                         }
+                     });
 
                     $(".removeBtn ,  .modifyBtn").hide();
                     $(".reviewSaveBtn").show();
@@ -214,20 +217,23 @@
                             console.log(review);
 
                             str += '    <div class="card-body" data-reviewnum='+review.reviewnum+' data-mid='+review.mid+'>';
-                            str += '    <h5 class="card-title">'+review.text+' <span>'+ review.grade+'</span></h5>';
+                            //str += '    <h5 class="card-title">'+review.text+' <span>'+ review.grade+'</span></h5>';
+                            str += '    <h5 class="card-title">'+review.text+' <span class="reviewgrade" data-grade2='+review.grade+'></span></h5>';
                             str += '    <h6 class="card-subtitle mb-2 text-muted">'+review.nickname+'</h6>';
                             str += '    <p class="card-text">'+ formatTime(review.regDate) +'</p>';
                             str += '    </div>';
                         });
 
                         $(".reviewList").html(str);
+
+                        $(".reviewgrade").each(function(idx,o){
+                            console.log(o);
+                            $(this).starrr({rating:$(this).data("grade2"),readOnly: true});
+                        });
                     });
                 }
-
+                //처음부터 리뷰목록 출력
                 getMovieReviews();
-
-
-                //modify reveiw
 
                 var reviewnum;
 
@@ -242,10 +248,29 @@
                     reviewnum = targetReview.data("reviewnum");
                     console.log("reviewnum: "+ reviewnum);
                     inputMid.val(targetReview.data("mid"));
-                    inputText.val(targetReview.find('.card-title').clone().children().remove().end().text());
+                    //inputText.val(targetReview.find('.card-title').clone().children().remove().end().text());
 
-                    var grade = targetReview.find('.card-title span').html();
-                    $(".starrr a:nth-child("+grade+")").trigger('click');
+                    //var grade = targetReview.find('.card-title span').html();
+                    //$(".starrr a:nth-child("+grade+")").trigger('click'); // click이벤트를 강제 발생.
+
+                    inputText.val(targetReview.find('.card-title').text().trim());
+                    var grade2 = $(this).find(".reviewgrade").data("grade2"); // 리뷰 목록에서 사용
+                    console.log(grade2);
+
+                    //.starrr초기화
+                    var star=$(".starrr").clone();
+                    $(".starrr").remove();
+                    $("#divGrade").append(star);
+
+                    $(".starrr").starrr({
+                        rating:grade2,
+                        change: function(e, value){
+                            if (value) {
+                                console.log(value);
+                                grade = value;
+                            }
+                        }
+                    });
 
                     $('.reviewModal').modal('show');
                 });
@@ -308,11 +333,7 @@
 
                 });
 
-
-
             });
         </script>
-
     </th:block>
-
 </th:block>

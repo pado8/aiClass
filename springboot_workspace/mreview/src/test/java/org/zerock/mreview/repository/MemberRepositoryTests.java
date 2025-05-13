@@ -35,7 +35,9 @@ public class MemberRepositoryTests {
     @Transactional
     @Test
     public void testDeleteMember() {
+
         Long mid = 1L; //Member의 mid
+
         Member member = Member.builder().mid(mid).build();
 
         //기존
