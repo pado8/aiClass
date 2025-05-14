@@ -1,2 +1,2 @@
 .vscode/settings.json
-/src/main/resources/application-oauth.properties
+springboot_workspace/mreview/src/main/resources/application-oauth.properties
