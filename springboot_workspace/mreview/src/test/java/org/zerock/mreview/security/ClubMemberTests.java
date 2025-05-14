@@ -3,17 +3,19 @@ package org.zerock.mreview.security;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.zerock.mreview.club.entity.ClubMember;
-import org.zerock.mreview.club.entity.ClubMemberRole;
-import org.zerock.mreview.club.repository.ClubMemberRepository;
+import org.zerock.mreview.entity.ClubMember;
+import org.zerock.mreview.entity.ClubMemberRole;
+import org.zerock.mreview.repository.ClubMemberRepository;
 
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.stream.IntStream;
 
 @SpringBootTest
+@AutoConfigureMockMvc
 public class ClubMemberTests {
 
     @Autowired

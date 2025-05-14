@@ -12,6 +12,7 @@ public class LoginController {
     //로그인화면
     @GetMapping("/login")
     public void login(){}
+
     //로그아웃화면. 로그인한 경우만 접근가능
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/logout")
