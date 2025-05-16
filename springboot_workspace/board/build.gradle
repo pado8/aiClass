@@ -45,6 +45,9 @@ dependencies {
 	//	mariadb driver
 	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
 
+	// https://mvnrepository.com/artifact/org.mybatis.spring.boot/mybatis-spring-boot-starter
+	implementation group: 'org.mybatis.spring.boot', name: 'mybatis-spring-boot-starter', version: '2.2.2'
+	
 	// querydsl 관련
 	implementation "com.querydsl:querydsl-jpa:${queryDslVersion}:jakarta"
 	annotationProcessor(

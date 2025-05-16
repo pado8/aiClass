@@ -74,4 +74,15 @@ public class BoardController {
         return "redirect:/board/read";
 
     }
+
+
+    //MyBatis
+    @GetMapping("/list2")
+    public void list2(Model model){
+        model.addAttribute("result", boardService.list2());
+    }
+    @GetMapping("/deleteTest")
+    public void deleteTest(){
+        boardService.deleteTest();
+    }
 }

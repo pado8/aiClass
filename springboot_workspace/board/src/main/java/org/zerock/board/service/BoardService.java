@@ -1,6 +1,8 @@
 package org.zerock.board.service;
 
 
+import java.util.List;
+
 import org.zerock.board.dto.BoardDTO;
 import org.zerock.board.dto.PageRequestDTO;
 import org.zerock.board.dto.PageResultDTO;
@@ -20,11 +22,13 @@ public interface BoardService {
     //수정
     void modify(BoardDTO boardDTO);
 
-//    PageResultDTO<BoardDTO, Object[]> getList2(PageRequestDTO pageRequestDTO);
-//
+    //    PageResultDTO<BoardDTO, Object[]> getList2(PageRequestDTO pageRequestDTO);
+    //
 
-
-
+   //목록.MyBatis
+    List<BoardDTO> list2();
+    //삭제.MyBatis
+    void deleteTest();
 
     default Board dtoToEntity(BoardDTO dto){
         Member member = Member.builder().email(dto.getWriterEmail()).build();
