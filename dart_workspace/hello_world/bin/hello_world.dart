@@ -1,11 +1,9 @@
-import 'package:hello_world/hello_world.dart' as hello_world;
-
 printInteger(int aNumber) {
   print('The number is $aNumber.');
 }
 
 Future checkVersion() async{
-  var version = await lookUpVersion();
+  var version = lookUpVersion();
   print('The version is $version.');
 }
 
@@ -14,7 +12,7 @@ int lookUpVersion() {
 }
 
 Future<String> getVersionName() async {
-  var versionName = await lookupVersionName();
+  var versionName = lookupVersionName();
   return versionName;
 }
 
