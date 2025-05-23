@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>단락평가</title>
+    <script>
+        // and 단락평가
+        function calcA() {
+            console.log("a");
+            return false;
+        }
+        function calcB() {
+            console.log("b");
+            return true;
+        }
+        console.log(calcA() && calcB()); // && 연산자 앞부분이 false 이므로 뒷부분 실행되지 않음
+        
+        //and 단락 평가 응용
+        function getName(person) {
+            return person && person.name; //person값이 있으면 person.name을 리턴, 없으면 person을 리턴
+        }
+        let person = {name: "이정한"};
+        let name1 = getName(undefined);
+        let name2 = getName(null);
+        let name3 = getName(person);
+        console.log(name1);
+        console.log(name2);
+        console.log(name3);
+
+
+        // || vs ??
+        const varA = 0; // 0은 ??에서 값이 있는 것으로 판단됨.
+        // const varA = null;
+        // const varA = undefined;
+        const varB = "이정환";
+        const resultA = varA || varB;
+        const resultB = varA ?? varB;
+        console.log(resultA); // 이정환
+        console.log(resultB); // 0
+        
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

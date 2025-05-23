@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>function3</title>
+    <script>
+        function greetFunc() {
+            console.log("Hello");            
+        }
+        greetFunc();
+
+        let greeting = greetFunc; // function명은 reference 역활.
+        greeting();
+
+
+        //함수의 parameter 값이 함수를 가리키는 reference.
+        function parentFunc(callBack) {
+            console.log("parent");
+            callBack();
+        }
+
+        function chidFunc() {
+            console.log("child");
+        }
+
+        parentFunc(chidFunc); //함수의 이름(reference)을 전달
+
+
+        function repeat(count, callBack) {
+            for (let idx = 0; idx < count; idx++) {
+                callBack(idx + 1);
+            }
+        }
+        //callback 함수를 parameter 자리에 직접 작성 가능
+        repeat(3, function (count) {
+            console.log(count * 2);
+        });
+
+
+        let isConfirm = true;
+        //parameter onYes, onNo는 callback 함수의 reference가 전달됨.
+        function confirm(onYes, onNo) {
+            if (isConfirm)
+                onYes();
+            else 
+                onNo();
+            
+        }
+
+        //함수호출 parameter 자리에 직접  callback함수 작성가능.
+        confirm(
+            () => console.log("yes"),
+            () => console.log("no")
+        )
+
+        function foo() {
+            console.log("foo");
+            function bar() {
+                console.log("bar");
+            }
+            bar(); // inner function bar() 호출가능
+        }
+        bar(); //foo()의 inner function bar()호출불가
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
