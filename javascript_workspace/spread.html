@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spread</title>
+    <script>
+        //배열전개
+        let arrA=[1,2,3];
+        let arrB=[...arrA,4,5,6]; //aarA의 요소를 전개해서 삽입
+        console.log(arrB);
+
+        // 객체전개
+        let objA={
+            a:1,
+            b:2,
+            c:3
+        };
+        let objB={
+            ...objA,
+            d:4,
+            e:5
+        };
+        console.log(objB);
+
+        //함수호출시 스프레드사용
+        function func(a,b,c) {
+            console.log(a,b,c);
+        }
+        let arr=[1,2,3];
+        func(...arr); //arr배열의 요소가 전개되서 parameter로 전달됨
+
+        // rest 매개변수. 가변길이 매개변수
+        function func2(...rest) {
+            console.log(rest);
+        }
+        func2(1,2,3,4,5); //parameter의 갯수가 정해져 있지 않음.
+
+        function func3(param, ...rest) { //일반 parameter와 reset parameter 혼용. rest parameter가 마지막에 와야함
+            console.log(param);
+            console.log(rest);
+        }
+        func3(1,2,3,4,5);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
