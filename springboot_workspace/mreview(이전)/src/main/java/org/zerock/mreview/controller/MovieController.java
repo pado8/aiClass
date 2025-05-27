@@ -13,6 +13,8 @@ import org.zerock.mreview.dto.MovieDTO;
 import org.zerock.mreview.dto.PageRequestDTO;
 import org.zerock.mreview.service.MovieService;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/movie")
 @Log4j2
