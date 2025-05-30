@@ -3,8 +3,8 @@ import "./TodoItem.css";
 const TodoItem=({id,content,isDone,createdDate,onUpdate,onDelete,onContentUpdate,onContentModify})=>{
 
     //체크박스변경시 실행되는 함수
-    const onChangeCheckbox=()=>{
-        onUpdate(id); //app component의 onUpdate함수 호출
+    const onChangeCheckbox=(e)=>{
+        onUpdate(id,e.target.checked); //app component의 onUpdate함수 호출
     };
     //삭제버튼시 실행되는 함수
     const onClickDelete=()=>{

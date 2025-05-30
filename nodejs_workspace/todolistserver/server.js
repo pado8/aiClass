@@ -17,8 +17,11 @@ app.use(bodyParser.json()); // 전달받은 데이터 json으로 변환
 app.use(bodyParser.urlencoded({ extended: false })); // urlencode설정
 let corsOption = {
     //접속을 허용할 프론트엔드 주소 명시
-    origin: "http://localhost:3000", // React서버에서 요청시 허용
-    credential: true // 설정내용 header에 추가
+    origin: [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000"
+  ], // React서버에서 요청시 허용
+    credentials: true // 설정내용 header에 추가
 };
 app.use(cors(corsOption)); // cors미들웨어. 주소가 다른 FE의 AJAX요청 허용
 //웹서버스타트
@@ -80,4 +83,12 @@ app.put("/modify/:id", function (request, response) {
         });
 });
 //isDone수정
-
+app.put("/update/:id", function (request, response) {
+    conn.query("update todolist set isDone=? where id=?",
+        [request.body.isDone, request.params.id],
+        function (error, data) {
+            console.log("###########update##############");
+            console.log(data);
+            response.send(data); // FE(브라우저)로 전송
+        });
+});

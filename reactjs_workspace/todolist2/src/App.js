@@ -2,7 +2,7 @@ import "./App.css";
 import Header from "./component/Header";
 import TodoEditor from "./component/TodoEditor";
 import TodoList from "./component/TodoList";
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 
 // 기본데이터
@@ -11,7 +11,6 @@ const mockTodo = [];
 function App() {
   const [todo, setTodo] = useState(mockTodo);
   //변경여부 플래그값
-  const updateRef = useRef(false);
 
   /*********************** Ajax 요청 함수 ********************************/
   //목록을 Ajax요청하는 함수
@@ -24,7 +23,7 @@ function App() {
         console.log(result.data);
         setTodo(result.data);
       })
-      .catch((error) => {});
+      .catch((error) => { });
   };
   //키워드 검색 Ajax요청 함수
   const getSearch = (keyword) => {
@@ -37,7 +36,7 @@ function App() {
         console.log(result.data);
         setTodo(result.data);
       })
-      .catch((error) => {});
+      .catch((error) => { });
   };
   //content 수정 Ajax요청 함수
   const modifyContent = (targetId, updatedContent) => {
@@ -55,7 +54,7 @@ function App() {
       .then(() => {
         getList(); //목록갱신
       })
-      .catch(() => {});
+      .catch(() => { });
   };
   /* Ajax요청함수 .끝 */
 
@@ -69,7 +68,7 @@ function App() {
         console.log(result.data);
         setTodo(result.data);
       })
-      .catch((error) => {});
+      .catch((error) => { });
   }, []);
 
   // todo를 추가하는 함수
@@ -98,16 +97,34 @@ function App() {
         //insert가 성공했을 때 목록갱신
         getList();
       })
-      .catch((error) => {});
+      .catch((error) => { });
   };
   //isDone수정함수
-  const onUpdate = (targetId) => {
-    // setTodo(
-    //   todo.map((it)=>
-    //     it.id===targetId?{...it, isDone:!it.isDone } : it
-    //   )
-    // );
+  const onUpdate = (targetId, updatedIsDone) => {
+    const newIsDone = updatedIsDone ? 1 : 0;
+
+    setTodo(prev =>
+      prev.map(item =>
+        item.id === targetId
+          ? { ...item, isDone: newIsDone }
+          : item
+      )
+    );
+
+    axios
+      .put(
+        `http://127.0.0.1:52273/update/${targetId}`,
+        { isDone: newIsDone }
+      )
+      .then(() => {
+        getList();
+      })
+      .catch(err => {
+        console.error("isDone 업데이트 실패:", err);
+        getList();
+      });
   };
+
   //todo삭제함수
   const onDelete = (targetId) => {
     //삭제하려는id와 같지 않은것만 필터링
@@ -121,7 +138,7 @@ function App() {
         //delete가 성공했을 때 목록갱신
         getList();
       })
-      .catch((error) => {});
+      .catch((error) => { });
   };
   //todo content변경함수
   const onContentUpdate = (targetId, updatedConent) => {
