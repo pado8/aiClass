@@ -1,12 +1,9 @@
 import "./TodoList.css";
 import TodoItem from "./TodoItem";
 import { useState } from "react"; 
-import { useSelector} from "react-redux";
 
-const TodoList=()=>{
-  
-  const todo = useSelector((state) => state.todo); // Redux에서 직접 가져오기
-
+// props를 받아서 처리. 구조분해할당 사용
+const TodoList=({todo, onUpdate, onDelete })=>{
   //search state생성. 구조분해할당 사용
   const [search,setSearch]=useState("");
   //search state변경함수
@@ -28,8 +25,8 @@ const TodoList=()=>{
           <TodoItem
             key={it.id}
             {...it}
-            // onUpdate={onUpdate}
-            // onDelete={onDelete}
+            onUpdate={onUpdate}
+            onDelete={onDelete}
           />
         ))}
       </div>     

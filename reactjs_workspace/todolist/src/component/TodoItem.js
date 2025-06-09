@@ -1,25 +1,23 @@
 import "./TodoItem.css";
+import { useDispatch } from "react-redux";
+import { onUpdate, onDelete } from "../store/todoSlice";
 
-const TodoItem = ({ id, content, isDone, createdDate, onUpdate, onDelete }) => {
-   const onChangeCheckbox = () => {
-    onUpdate(id);
-  };
+const TodoItem=({id,content,isDone,createdDate})=>{  
 
-  const onClickDelete = () => {
-    onDelete(id);
-  };
-
+  const dispatch = useDispatch();
+  
   return (
     <div className="TodoItem">
       <div className="checkbox_col">
-        <input type="checkbox" onChange={onChangeCheckbox} checked={isDone} />
+        <input onChange={() => dispatch(onUpdate(id))} checked={isDone} type="checkbox" />
       </div>
       <div className="title_col">{content}</div>
       <div className="date_col">{new Date(createdDate).toLocaleDateString()}</div>
       <div className="btn_col">
-        <button onClick={onClickDelete}>삭제</button>
+        <button onClick={() => dispatch(onDelete(id))}>삭제</button>
       </div>
     </div>
   );
 };
+
 export default TodoItem;

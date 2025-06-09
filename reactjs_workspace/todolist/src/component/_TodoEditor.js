@@ -1,12 +1,8 @@
 import "./TodoEditor.css";
 import { useState, useRef } from "react";
-import { useDispatch } from "react-redux";
-import { onCreate } from "../store/todoSlice";
 
-const TodoEditor=()=>{
-
-  const dispatch = useDispatch(); //dispatch
-
+// onCreate props 받아서 사용. 구조분해할당 사용
+const TodoEditor=({onCreate})=>{
   const [content, setContent] = useState("");//content state
   const inputRef = useRef(); // input 태그를 가리키는 ref   
 
@@ -21,9 +17,7 @@ const TodoEditor=()=>{
       inputRef.current.focus();
       return;
     }
-    
-    dispatch(onCreate(content)); // dispatch
-
+    onCreate(content); // onCreate props로 전달된 함수 호출. 할일 추가
     setContent(""); // content state초기화=>input 태그 초기화
   }
   //enter키 누를 때 처리
