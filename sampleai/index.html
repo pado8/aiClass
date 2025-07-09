@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kick Auction - 커뮤니티</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+            background: linear-gradient(135deg, #f8fafb 0%, #e8f4f8 100%);
+            min-height: 100vh;
+            color: #0C3D5A;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #15689A 0%, #125781 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 20px;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(21, 104, 154, 0.3);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .board-nav {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-item {
+            background: white;
+            border: 2px solid #1F9CE7;
+            color: #1F9CE7;
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(31, 156, 231, 0.1);
+        }
+
+        .nav-item:hover, .nav-item.active {
+            background: #1F9CE7;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(31, 156, 231, 0.3);
+        }
+
+        .board-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .search-box {
+            display: flex;
+            gap: 0.5rem;
+            flex: 1;
+            max-width: 400px;
+        }
+
+        .search-box input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 2px solid #e0e6ed;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: #1F9CE7;
+            box-shadow: 0 0 0 3px rgba(31, 156, 231, 0.1);
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #1771A7 0%, #15689A 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(23, 113, 167, 0.3);
+        }
+
+        .board-table {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(12, 61, 90, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .table-header {
+            background: linear-gradient(135deg, #0C3D5A 0%, #125781 100%);
+            color: white;
+            padding: 1rem;
+            display: grid;
+            grid-template-columns: 80px 1fr 120px 120px 100px;
+            gap: 1rem;
+            font-weight: 600;
+        }
+
+        .table-row {
+            display: grid;
+            grid-template-columns: 80px 1fr 120px 120px 100px;
+            gap: 1rem;
+            padding: 1rem;
+            border-bottom: 1px solid #f0f4f8;
+            align-items: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .table-row:hover {
+            background: linear-gradient(135deg, #f8fafb 0%, #e8f4f8 100%);
+            transform: translateX(5px);
+        }
+
+        .table-row:last-child {
+            border-bottom: none;
+        }
+
+        .post-number {
+            font-weight: 600;
+            color: #15689A;
+        }
+
+        .post-title {
+            font-weight: 600;
+            color: #0C3D5A;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .post-title:hover {
+            color: #1F9CE7;
+        }
+
+        .post-meta {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .tag {
+            background: linear-gradient(135deg, #1F9CE7 0%, #1771A7 100%);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .tag.hot {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ff5252 100%);
+        }
+
+        .tag.new {
+            background: linear-gradient(135deg, #4ecdc4 0%, #44a08d 100%);
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 2rem;
+        }
+
+        .page-btn {
+            width: 40px;
+            height: 40px;
+            border: 2px solid #e0e6ed;
+            background: white;
+            color: #666;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+
+        .page-btn:hover, .page-btn.active {
+            background: #1F9CE7;
+            border-color: #1F9CE7;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .stats-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 16px;
+            box-shadow: 0 6px 20px rgba(12, 61, 90, 0.1);
+            margin-bottom: 1rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1rem;
+            background: linear-gradient(135deg, #f8fafb 0%, #e8f4f8 100%);
+            border-radius: 12px;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #15689A;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .floating-write-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #1F9CE7 0%, #1771A7 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            box-shadow: 0 8px 25px rgba(31, 156, 231, 0.4);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .floating-write-btn:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 12px 35px rgba(31, 156, 231, 0.5);
+        }
+
+        @media (max-width: 768px) {
+            .table-header, .table-row {
+                grid-template-columns: 60px 1fr 80px;
+                gap: 0.5rem;
+            }
+            
+            .table-header .hide-mobile, .table-row .hide-mobile {
+                display: none;
+            }
+            
+            .board-controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .search-box {
+                max-width: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+
+        <div class="board-controls">
+            <div class="search-box">
+                <input type="text" placeholder="게시글 검색...">
+                <button class="btn">🔍 검색</button>
+            </div>
+            <a href="#" class="btn">✏️ 글쓰기</a>
+        </div>
+
+        <div class="board-table">
+            <div class="table-header">
+                <div>번호</div>
+                <div>제목</div>
+                <div class="hide-mobile">작성자</div>
+                <div class="hide-mobile">작성일</div>
+                <div>조회</div>
+            </div>
+            
+            <div class="table-row">
+                <div class="post-number">공지</div>
+                <div class="post-title">
+                    <span class="tag">공지</span>
+                    Kick Auction 커뮤니티 이용 안내
+                </div>
+                <div class="post-meta hide-mobile">관리자</div>
+                <div class="post-meta hide-mobile">2025.06.10</div>
+                <div class="post-meta">1,234</div>
+            </div>
+
+            <div class="table-row">
+                <div class="post-number">245</div>
+                <div class="post-title">
+                    <span class="tag hot">HOT</span>
+                    풋살화 230사이즈 3일간 대여 희망합니다!
+                </div>
+                <div class="post-meta hide-mobile">축구왕김태수</div>
+                <div class="post-meta hide-mobile">2025.06.12</div>
+                <div class="post-meta">89</div>
+            </div>
+
+            <div class="table-row">
+                <div class="post-number">244</div>
+                <div class="post-title">
+                    <span class="tag new">NEW</span>
+                    축구공 대여 역경매 시작가 5,000원
+                </div>
+                <div class="post-meta hide-mobile">풋살러브</div>
+                <div class="post-meta hide-mobile">2025.06.12</div>
+                <div class="post-meta">156</div>
+            </div>
+
+            <div class="table-row">
+                <div class="post-number">243</div>
+                <div class="post-title">
+                    골키퍼 장갑 관리 꿀팁 공유합니다
+                </div>
+                <div class="post-meta hide-mobile">골키퍼마스터</div>
+                <div class="post-meta hide-mobile">2025.06.11</div>
+                <div class="post-meta">67</div>
+            </div>
+
+            <div class="table-row">
+                <div class="post-number">242</div>
+                <div class="post-title">
+                    <span class="tag">경매</span>
+                    축구화 클리트 260 사이즈 대여
+                </div>
+                <div class="post-meta hide-mobile">축구덕후</div>
+                <div class="post-meta hide-mobile">2025.06.11</div>
+                <div class="post-meta">45</div>
+            </div>
+
+            <div class="table-row">
+                <div class="post-number">241</div>
+                <div class="post-title">
+                    풋살 경기 후 장비 관리 방법 질문
+                </div>
+                <div class="post-meta hide-mobile">초보풋살러</div>
+                <div class="post-meta hide-mobile">2025.06.10</div>
+                <div class="post-meta">123</div>
+            </div>
+
+            <div class="table-row">
+                <div class="post-number">240</div>
+                <div class="post-title">
+                    <span class="tag">대여</span>
+                    신축 레깅스 L사이즈 1주일 대여
+                </div>
+                <div class="post-meta hide-mobile">런닝맨</div>
+                <div class="post-meta hide-mobile">2025.06.10</div>
+                <div class="post-meta">78</div>
+            </div>
+
+            <div class="table-row">
+                <div class="post-number">239</div>
+                <div class="post-title">
+                    겨울철 축구화 선택 가이드
+                </div>
+                <div class="post-meta hide-mobile">축구전문가</div>
+                <div class="post-meta hide-mobile">2025.06.09</div>
+                <div class="post-meta">234</div>
+            </div>
+        </div>
+
+        <div class="pagination">
+            <button class="page-btn">‹</button>
+            <button class="page-btn active">1</button>
+            <button class="page-btn">2</button>
+            <button class="page-btn">3</button>
+            <button class="page-btn">4</button>
+            <button class="page-btn">5</button>
+            <button class="page-btn">›</button>
+        </div>
+    </div>
+
+    <div class="floating-write-btn" onclick="alert('글쓰기 페이지로 이동')">
+        ✏️
+    </div>
+
+    <script>
+        // 테이블 행 클릭 이벤트
+        document.querySelectorAll('.table-row').forEach(row => {
+            row.addEventListener('click', function() {
+                alert('게시글 상세 페이지로 이동');
+            });
+        });
+
+        // 네비게이션 클릭 이벤트 제거
+
+        // 페이지네이션 클릭 이벤트
+        document.querySelectorAll('.page-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                if (!this.textContent.includes('‹') && !this.textContent.includes('›')) {
+                    document.querySelectorAll('.page-btn').forEach(page => page.classList.remove('active'));
+                    this.classList.add('active');
+                }
+            });
+        });
+
+        // 검색 기능
+        document.querySelector('.search-box input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                alert('검색 기능: ' + this.value);
+            }
+        });
+    </script>
+</body>
+</html>
